@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- List View -->
+    <record id="view_p2p_loan_list" model="ir.ui.view">
+        <field name="name">p2p.loan.list</field>
+        <field name="model">p2p.loan</field>
+        <field name="arch" type="xml">
+            <list string="Danh sách khoản vay">
+                <field name="name"/>
+                <field name="borrower_id"/>
+                <field name="amount" sum="Tổng cộng"/>
+                <field name="term"/>
+                <field name="interest_rate"/>
+                <field name="state" widget="badge" 
+                       decoration-info="state in ['draft', 'waiting_approval']" 
+                       decoration-danger="state in ['defaulted', 'cancelled']"
+                       decoration-success="state in ['funded', 'disbursed', 'in_progress', 'paid']"/>
+                <field name="funding_progress" widget="progressbar" options="{'editable': false}"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_p2p_loan_form" model="ir.ui.view">
+        <field name="name">p2p.loan.form</field>
+        <field name="model">p2p.loan</field>
+        <field name="arch" type="xml">
+            <form string="Khoản vay">
+                <header>
+                    <button name="action_submit_for_approval" string="Gửi phê duyệt" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_approve" string="Duyệt" class="oe_highlight" invisible="state != 'waiting_approval'"/>
+                    <button name="action_fund" string="Xác nhận đủ vốn" class="oe_highlight" invisible="state != 'funding'"/>
+                    <button name="action_disburse" string="Giải ngân" class="oe_highlight" invisible="state != 'funded'"/>
+                    <button name="action_cancel" string="Hủy" class="oe_highlight" invisible="state not in ['draft', 'waiting_approval', 'funding']"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,waiting_approval,funding,funded,disbursed,in_progress,paid,defaulted,cancelled"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="borrower_id"/>
+                            <field name="amount"/>
+                            <field name="term"/>
+                        </group>
+                        <group>
+                            <field name="interest_rate"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="purpose"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_p2p_loan_search" model="ir.ui.view">
+        <field name="name">p2p.loan.search</field>
+        <field name="model">p2p.loan</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm khoản vay">
+                <field name="name" string="Mã khoản vay"/>
+                <field name="borrower_id" string="Người vay"/>
+                <separator/>
+                <filter string="Đang chờ phê duyệt" name="waiting_approval" domain="[('state', '=', 'waiting_approval')]"/>
+                <filter string="Đang gọi vốn" name="funding" domain="[('state', '=', 'funding')]"/>
+                <filter string="Đã giải ngân" name="disbursed" domain="[('state', '=', 'disbursed')]"/>
+                <group expand="0" string="Nhóm">
+                    <filter string="Đã hủy" name="cancelled" domain="[('state', '=', 'cancelled')]"/>
+                    <filter string="Quá hạn" name="defaulted" domain="[('state', '=', 'defaulted')]"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="p2p_lending.action_p2p_loan" model="ir.actions.act_window">
+        <field name="name">Khoản vay</field>
+        <field name="res_model">p2p.loan</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo khoản vay mới
+            </p>
+        </field>
+    </record>
+</odoo>

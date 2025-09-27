@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Investor Views -->
+        <record id="view_investor_tree" model="ir.ui.view">
+            <field name="name">investor.tree</field>
+            <field name="model">p2p.investor</field>
+            <field name="arch" type="xml">
+                <list string="Nhà đầu tư">
+                    <field name="name"/>    
+                    <field name="phone"/>
+                    <field name="email"/>
+                    <field name="city"/>
+                    <field name="job_title"/>
+                    <field name="monthly_income"/>
+                    <field name="investment_capacity"/>
+                    <field name="risk_tolerance"/>
+                    <field name="total_investments"/>
+                    <field name="active_investments"/>
+                    <field name="status"/>
+                    <field name="sync_status"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_investor_form" model="ir.ui.view">
+            <field name="name">investor.form</field>
+            <field name="model">p2p.investor</field>
+            <field name="arch" type="xml">
+                <form string="Nhà đầu tư">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="sync_from_server" type="object" class="oe_stat_button" icon="fa-sync">
+                                <field name="sync_status" widget="statinfo" string="Sync Status"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="user_id"/>
+                                <field name="phone"/>
+                                <field name="email"/>
+                                <field name="identity_card"/>
+                            </group>
+                            <group>
+                                <field name="address"/>
+                                <field name="city"/>
+                                <field name="job_title"/>
+                                <field name="date_of_birth"/>
+                                <field name="risk_tolerance"/>
+                                <field name="status"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Thông tin tài chính">
+                                <field name="monthly_income"/>
+                                <field name="investment_capacity"/>
+                            </group>
+                            <group string="Thống kê đầu tư">
+                                <field name="total_investments"/>
+                                <field name="active_investments"/>
+                                <field name="total_invested"/>
+                                <field name="total_returns"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Đồng bộ">
+                                <field name="sync_status"/>
+                                <field name="last_sync"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_credit_model_user,credit.model.user,model_credit_model,base.group_user,1,0,0,0
+access_credit_model_manager,credit.model.manager,model_credit_model,base.group_system,1,1,1,1
+access_credit_score_user,credit.score.user,model_credit_score,base.group_user,1,0,0,0
+access_credit_score_manager,credit.score.manager,model_credit_score,base.group_system,1,1,1,1
+access_credit_policy_user,credit.policy.user,model_credit_policy,base.group_user,1,0,0,0
+access_credit_policy_manager,credit.policy.manager,model_credit_policy,base.group_system,1,1,1,1
+access_credit_scoring_wizard_user,credit.scoring.wizard.user,model_credit_scoring_wizard,base.group_user,1,1,1,0

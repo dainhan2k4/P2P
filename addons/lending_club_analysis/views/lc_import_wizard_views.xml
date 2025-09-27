@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_lc_import_wizard" model="ir.ui.view">
+        <field name="name">lc.import.wizard.form</field>
+        <field name="model">lc.import.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Import Lịch sử khoản vay Lending Club CSV/XLSX" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <field name="data_file" filename="filename"/>
+                        <field name="filename" readonly="1"/>
+                        <field name="delimiter"/>
+                        <field name="encoding"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="Nhập" type="object" name="action_import" class="btn-primary"/>
+                    <button string="Đóng" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_lc_import_wizard" model="ir.actions.act_window">
+        <field name="name">Import Lịch sử khoản vay Lending Club CSV</field>
+        <field name="res_model">lc.import.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
+

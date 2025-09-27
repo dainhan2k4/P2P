@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- P2P Loan Views -->
+        <record id="view_p2p_loan_list" model="ir.ui.view">
+            <field name="name">p2p.loan.list</field>
+            <field name="model">p2p.loan</field>
+            <field name="arch" type="xml">
+                <list string="P2P Loans">
+                    <field name="name"/>
+                    <field name="amount"/>
+                    <field name="interest_rate"/>
+                    <field name="term_months"/>
+                    <field name="status"/>
+                    <field name="borrower_name"/>
+                    <field name="borrower_phone"/>
+                    <field name="create_date"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_p2p_loan_form" model="ir.ui.view">
+            <field name="name">p2p.loan.form</field>
+            <field name="model">p2p.loan</field>
+            <field name="arch" type="xml">
+                <form string="P2P Loan">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="amount"/>
+                                <field name="interest_rate"/>
+                                <field name="term_months"/>
+                                <field name="status"/>
+                            </group>
+                            <group>
+                                <field name="borrower_id"/>
+                                <field name="borrower_name"/>
+                                <field name="borrower_phone"/>
+                                <field name="user_id"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                            </group>
+                            <group>
+                                <field name="create_date"/>
+                                <field name="last_sync"/>
+                                <field name="sync_status"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_p2p_loan_search" model="ir.ui.view">
+            <field name="name">p2p.loan.search</field>
+            <field name="model">p2p.loan</field>
+            <field name="arch" type="xml">
+                <search string="P2P Loans">
+                    <field name="name"/>
+                    <field name="borrower_name"/>
+                    <field name="borrower_phone"/>
+                    <filter string="Active" name="active" domain="[('status', '=', 'active')]"/>
+                    <filter string="Pending" name="pending" domain="[('status', '=', 'pending')]"/>
+                    <filter string="Completed" name="completed" domain="[('status', '=', 'completed')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Status" name="group_status" context="{'group_by': 'status'}"/>
+                        <filter string="Borrower" name="group_borrower" context="{'group_by': 'borrower_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- P2P Investment Views -->
+        <record id="view_p2p_investment_list" model="ir.ui.view">
+            <field name="name">p2p.investment.list</field>
+            <field name="model">p2p.investment</field>
+            <field name="arch" type="xml">
+                <list string="P2P Investments">
+                    <field name="name"/>
+                    <field name="amount"/>
+                    <field name="interest_rate"/>
+                    <field name="term_months"/>
+                    <field name="monthly_income"/>
+                    <field name="monthly_profit"/>
+                    <field name="status"/>
+                    <field name="investor_name"/>
+                    <field name="investor_phone"/>
+                    <field name="create_date"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_p2p_investment_form" model="ir.ui.view">
+            <field name="name">p2p.investment.form</field>
+            <field name="model">p2p.investment</field>
+            <field name="arch" type="xml">
+                <form string="P2P Investment">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="amount"/>
+                                <field name="interest_rate"/>
+                                <field name="term_months"/>
+                                <field name="status"/>
+                            </group>
+                            <group>
+                                <field name="investor_id"/>
+                                <field name="investor_name"/>
+                                <field name="investor_phone"/>
+                                <field name="user_id"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                            </group>
+                            <group>
+                                <field name="create_date"/>
+                                <field name="last_sync"/>
+                                <field name="sync_status"/>
+                            </group>
+                        </group>
+                        <group string="Investment Info">
+                            <group>
+                                <field name="monthly_income"/>
+                                <field name="monthly_profit"/>
+                                <field name="entirely_profit"/>
+                            </group>
+                            <group>
+                                <field name="monthly_principal_income"/>
+                                <field name="monthly_interest_income"/>
+                                <field name="num_notes"/>
+                                <field name="service_fee"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_p2p_investment_search" model="ir.ui.view">
+            <field name="name">p2p.investment.search</field>
+            <field name="model">p2p.investment</field>
+            <field name="arch" type="xml">
+                <search string="P2P Investments">
+                    <field name="name"/>
+                    <field name="investor_name"/>
+                    <field name="investor_phone"/>
+                    <filter string="Active" name="active" domain="[('status', '=', 'active')]"/>
+                    <filter string="Pending" name="pending" domain="[('status', '=', 'pending')]"/>
+                    <filter string="Completed" name="completed" domain="[('status', '=', 'completed')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Status" name="group_status" context="{'group_by': 'status'}"/>
+                        <filter string="Investor" name="group_investor" context="{'group_by': 'investor_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Actions -->
+        <record id="action_p2p_loan" model="ir.actions.act_window">
+            <field name="name">P2P Loans</field>
+            <field name="res_model">p2p.loan</field>
+            <field name="view_mode">list,form</field>
+            <field name="search_view_id" ref="view_p2p_loan_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first P2P Loan!
+                </p>
+                <p>
+                    Track and manage P2P loans from MongoDB.
+                </p>
+            </field>
+        </record>
+
+        <record id="action_p2p_investment" model="ir.actions.act_window">
+            <field name="name">P2P Investments</field>
+            <field name="res_model">p2p.investment</field>
+            <field name="view_mode">list,form</field>
+            <field name="search_view_id" ref="view_p2p_investment_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first P2P Investment!
+                </p>
+                <p>
+                    Track and manage P2P investments from MongoDB.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

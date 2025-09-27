@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Statistics Template -->
+        <template id="statistics_template" name="P2P Statistics">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="oe_title">
+                        <h1>Thống kê P2P Lending</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Tổng người dùng</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <h2 t-esc="stats.get('total_users', 0)"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="panel panel-success">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Tổng khoản vay</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <h2 t-esc="stats.get('total_loans', 0)"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="panel panel-warning">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Tổng đầu tư</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <h2 t-esc="stats.get('total_investments', 0)"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Phòng chờ</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <h2 t-esc="stats.get('total_waiting_rooms', 0)"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <!-- Error Template -->
+        <template id="error_template" name="Error Template">
+            <t t-call="web.html_container">
+                <div class="alert alert-danger">
+                    <h4>Lỗi</h4>
+                    <p t-esc="error"/>
+                </div>
+            </t>
+        </template>
+
+        <!-- Dashboard Template -->
+        <template id="dashboard_template" name="P2P Dashboard">
+            <t t-call="web.html_container">
+                <div class="oe_title">
+                    <h1>P2P Lending Dashboard</h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Thống kê nhanh</h3>
+                            </div>
+                            <div class="panel-body">
+                                <p>Tổng người dùng: <strong t-esc="stats.get('total_users', 0)"/></p>
+                                <p>Khoản vay đang hoạt động: <strong t-esc="stats.get('active_loans', 0)"/></p>
+                                <p>Đầu tư đang hoạt động: <strong t-esc="stats.get('active_investments', 0)"/></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Hành động</h3>
+                            </div>
+                            <div class="panel-body">
+                                <a href="/p2p/sync" class="btn btn-primary">Đồng bộ dữ liệu</a>
+                                <a href="/p2p/test-connection" class="btn btn-info">Test kết nối</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- P2P Lending Groups -->
+        <record id="group_p2p_user" model="res.groups">
+            <field name="name">P2P User</field>
+            <field name="category_id" ref="base.module_category_finance"/>
+            <field name="comment">Người dùng cơ bản của hệ thống P2P Lending</field>
+        </record>
+
+        <record id="group_p2p_manager" model="res.groups">
+            <field name="name">P2P Manager</field>
+            <field name="category_id" ref="base.module_category_finance"/>
+            <field name="comment">Quản lý hệ thống P2P Lending</field>
+            <field name="implied_ids" eval="[(4, ref('group_p2p_user'))]"/>
+        </record>
+
+        <record id="group_p2p_admin" model="res.groups">
+            <field name="name">P2P Administrator</field>
+            <field name="category_id" ref="base.module_category_finance"/>
+            <field name="comment">Quản trị viên hệ thống P2P Lending</field>
+            <field name="implied_ids" eval="[(4, ref('group_p2p_manager'))]"/>
+        </record>
+
+        <!-- Configuration Groups -->
+        <record id="group_config_user" model="res.groups">
+            <field name="name">Config User</field>
+            <field name="category_id" ref="base.module_category_finance"/>
+            <field name="comment">Người dùng cấu hình</field>
+        </record>
+
+        <record id="group_config_manager" model="res.groups">
+            <field name="name">Config Manager</field>
+            <field name="category_id" ref="base.module_category_finance"/>
+            <field name="comment">Quản lý cấu hình</field>
+            <field name="implied_ids" eval="[(4, ref('group_config_user'))]"/>
+        </record>
+
+        <!-- Disbursement Groups -->
+        <record id="group_disbursement_user" model="res.groups">
+            <field name="name">Disbursement User</field>
+            <field name="category_id" ref="base.module_category_finance"/>
+            <field name="comment">Người dùng giải ngân</field>
+        </record>
+
+        <record id="group_disbursement_manager" model="res.groups">
+            <field name="name">Disbursement Manager</field>
+            <field name="category_id" ref="base.module_category_finance"/>
+            <field name="comment">Quản lý giải ngân</field>
+            <field name="implied_ids" eval="[(4, ref('group_disbursement_user'))]"/>
+        </record>
+
+        <!-- Bridge Groups -->
+        <record id="group_bridge_user" model="res.groups">
+            <field name="name">Bridge User</field>
+            <field name="category_id" ref="base.module_category_finance"/>
+            <field name="comment">Người dùng bridge</field>
+        </record>
+
+        <record id="group_bridge_manager" model="res.groups">
+            <field name="name">Bridge Manager</field>
+            <field name="category_id" ref="base.module_category_finance"/>
+            <field name="comment">Quản lý bridge</field>
+            <field name="implied_ids" eval="[(4, ref('group_bridge_user'))]"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Loan Type Views -->
+        <record id="view_loan_type_tree" model="ir.ui.view">
+            <field name="name">loan.type.tree</field>
+            <field name="model">loan.type</field>
+            <field name="arch" type="xml">
+                <list string="Loại khoản vay">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="interest_rate"/>
+                    <field name="term_months"/>
+                    <field name="min_amount"/>
+                    <field name="max_amount"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_loan_type_form" model="ir.ui.view">
+            <field name="name">loan.type.form</field>
+            <field name="model">loan.type</field>
+            <field name="arch" type="xml">
+                <form string="Loại khoản vay">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="code"/>
+                                <field name="interest_rate"/>
+                                <field name="term_months"/>
+                            </group>
+                            <group>
+                                <field name="min_amount"/>
+                                <field name="max_amount"/>
+                                <field name="service_fee_rate"/>
+                                <field name="late_fee_rate"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="active"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Loan Configuration Views -->
+        <record id="view_loan_config_tree" model="ir.ui.view">
+            <field name="name">loan.config.tree</field>
+            <field name="model">loan.config</field>
+            <field name="arch" type="xml">
+                <list string="Cấu hình khoản vay">
+                    <field name="name"/>
+                    <field name="active"/>
+                    <field name="base_interest_rate"/>
+                    <field name="max_interest_rate"/>
+                    <field name="min_loan_amount"/>
+                    <field name="max_loan_amount"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_loan_config_form" model="ir.ui.view">
+            <field name="name">loan.config.form</field>
+            <field name="model">loan.config</field>
+            <field name="arch" type="xml">
+                <form string="Cấu hình khoản vay">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="test_server_connection" type="object" class="oe_stat_button" icon="fa-wifi">
+                                <div class="o_stat_info">
+                                    <span class="o_stat_text">Test Connection</span>
+                                </div>
+                            </button>
+                            <button name="sync_config_to_server" type="object" class="oe_stat_button" icon="fa-sync">
+                                <div class="o_stat_info">
+                                    <span class="o_stat_text">Sync to Server</span>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group string="Cấu hình chung">
+                                <field name="active"/>
+                                <field name="default_currency_id"/>
+                                <field name="min_loan_amount"/>
+                                <field name="max_loan_amount"/>
+                            </group>
+                            <group string="Lãi suất">
+                                <field name="base_interest_rate"/>
+                                <field name="max_interest_rate"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Phí dịch vụ">
+                                <field name="service_fee_rate"/>
+                                <field name="late_fee_rate"/>
+                                <field name="processing_fee"/>
+                            </group>
+                            <group string="Tích hợp Server">
+                                <field name="server_enabled"/>
+                                <field name="server_api_url"/>
+                                <field name="server_api_key"/>
+                                <field name="server_sync_interval"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Thông báo">
+                                <field name="email_notifications"/>
+                                <field name="sms_notifications"/>
+                            </group>
+                            <group string="Cài đặt nâng cao">
+                                <field name="auto_approval_limit"/>
+                                <field name="max_concurrent_loans"/>
+                                <field name="factor_constant"/>
+                            </group>
+                        </group>
+                        <group string="Hệ số cấu hình">
+                            <group>
+                                <field name="risk_factor"/>
+                                <field name="credit_score_factor"/>
+                                <field name="loan_term_factor"/>
+                            </group>
+                            <group>
+                                <field name="collateral_factor"/>
+                                <field name="early_repayment_discount"/>
+                                <field name="late_payment_penalty"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Actions -->
+        <record id="action_loan_type" model="ir.actions.act_window">
+            <field name="name">Loại khoản vay</field>
+            <field name="res_model">loan.type</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="view_loan_type_tree"/>
+        </record>
+
+        <record id="action_loan_config" model="ir.actions.act_window">
+            <field name="name">Cấu hình hệ thống</field>
+            <field name="res_model">loan.config</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="view_loan_config_tree"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Single Form View -->
+    <record id="simple_credit_model_form" model="ir.ui.view">
+        <field name="name">simple.credit.model.form</field>
+        <field name="model">credit.model</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Simple Action -->
+    <record id="action_simple_credit_model" model="ir.actions.act_window">
+        <field name="name">Simple Credit Models</field>
+        <field name="res_model">credit.model</field>
+        <field name="view_mode">form</field>
+    </record>
+</odoo>

@@ -1,0 +1,293 @@
+
+/* Global Dashboard Improvements */
+.o_form_view .o_notebook .o_notebook_content {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+    border-radius: 0 0 12px 12px;
+}
+
+/* Tab Headers Enhancement */
+.o_notebook .nav-link {
+    font-weight: 600;
+    color: #64748b;
+    border: none;
+    border-radius: 8px 8px 0 0;
+    margin-right: 4px;
+    padding: 12px 24px;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+}
+
+.o_notebook .nav-link.active {
+    color: #1e293b;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border-bottom: 3px solid #3b82f6;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.o_notebook .nav-link:hover:not(.active) {
+    color: #374151;
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+    transform: translateY(-1px);
+}
+
+/* Card Grid Layout Enhancement */
+.o_dashboard_container .row {
+    margin: 0 -8px;
+}
+
+.o_dashboard_container .col-md-6,
+.o_dashboard_container .col-lg-3,
+.o_dashboard_container .col-md-12 {
+    padding: 0 8px;
+}
+
+/* Enhanced Alert Styling */
+.alert-primary {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    border: 1px solid #93c5fd;
+    border-left: 4px solid #3b82f6;
+    color: #1e40af;
+    border-radius: 10px;
+    margin: 1rem 0;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+.alert-primary strong {
+    color: #1d4ed8;
+    font-weight: 700;
+}
+/* Prevent large numeric values from overflowing their metric cards */
+.card .h5.mb-0.font-weight-bold.text-gray-800,
+.card .text-xs.font-weight-bold.text-uppercase.mb-1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Allow labels to wrap gracefully on small widths */
+.card .text-xs.font-weight-bold.text-uppercase.mb-1 {
+    white-space: normal;
+    word-break: break-word;
+    max-width: 100%;
+}
+
+/* Metric Cards Professional Styling */
+.card.shadow.h-100.py-2 {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+    position: relative;
+}
+
+.card.shadow.h-100.py-2::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+    border-radius: 12px 12px 0 0;
+}
+
+.card.shadow.h-100.py-2:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Enhanced Typography in Metric Cards */
+.card .text-xs.font-weight-bold.text-uppercase.mb-1 {
+    color: #64748b;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem !important;
+}
+
+.card .h5.mb-0.font-weight-bold.text-gray-800 {
+    color: #1e293b !important;
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* Form Title Enhancement */
+.oe_title h1 {
+    color: #1e293b;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.oe_title h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+    border-radius: 2px;
+}
+
+/* Chart Container Cards - keep normal padding for cards, but remove padding specifically for embedded dashboard widgets */
+.o_dashboard_container .card .card-body {
+    /* restore reasonable padding for metric cards so content doesn't overflow */
+    padding: 1rem;
+    background: transparent;
+    box-sizing: border-box;
+}
+
+/* When a card directly contains a dashboard widget, let the widget control its own spacing (remove extra inner padding) */
+.o_dashboard_container .card .card-body .o_field_dashboard_stats {
+    margin: 0;
+    padding: 0;
+}
+
+/* Button Enhancements */
+.btn-primary {
+    border: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+}
+/* Button focus handled globally by the theme; no local focus overrides needed */
+
+/* Form Field Groups Enhancement */
+.o_group .o_inner_group {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Sheet Enhancement */
+.o_form_sheet {
+    background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+}
+
+/* Loading and Error States Enhancement in Cards */
+.card .p2p-stats-loading,
+.card .p2p-stats-error,
+.card .p2p-stats-empty {
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    background: transparent;
+    height: 280px;
+}
+
+.card .p2p-stats-loading {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+}
+
+.card .p2p-stats-error {
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+}
+
+.card .p2p-stats-empty {
+    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+}
+
+/* Responsive Layout Improvements */
+@media (max-width: 992px) {
+    .o_notebook .nav-link {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .card .h5.mb-0.font-weight-bold.text-gray-800 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .o_form_view .o_notebook .o_notebook_content {
+        padding: 1rem;
+    }
+    
+    .o_dashboard_container .row {
+        margin: 0 -4px;
+    }
+    
+    .o_dashboard_container .col-md-6,
+    .o_dashboard_container .col-lg-3,
+    .o_dashboard_container .col-md-12 {
+        padding: 0 4px;
+        margin-bottom: 1rem;
+    }
+    
+    .oe_title h1 {
+        font-size: 1.75rem;
+    }
+}
+
+/* Subtle Animation for Dashboard Elements */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.o_dashboard_container .card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.o_dashboard_container .card:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.o_dashboard_container .card:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.o_dashboard_container .card:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+/* Focus States for Accessibility */
+.card:focus-within {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.o_notebook .nav-link:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* Professional Scrollbar */
+.o_form_view::-webkit-scrollbar {
+    width: 8px;
+}
+
+.o_form_view::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+.o_form_view::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #cbd5e1, #94a3b8);
+    border-radius: 4px;
+}
+
+.o_form_view::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #94a3b8, #64748b);
+}

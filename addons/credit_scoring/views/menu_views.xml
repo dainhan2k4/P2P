@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root Menu -->
+    <menuitem id="menu_credit_scoring_root"
+              name="Credit Scoring"
+              sequence="50"/>
+            
+
+    <!-- Credit Scoring Main Menu -->
+    <menuitem id="menu_credit_scoring_root"
+              name="Credit Scoring"
+              web_icon="credit_scoring,static/description/icon.png"
+              sequence="50"/>
+
+    <!-- Credit Scoring Sub Menus -->
+    <menuitem id="menu_credit_scoring_main"
+              name="Credit Scoring"
+              parent="menu_credit_scoring_root"
+              sequence="10"/>
+
+    <menuitem id="menu_credit_scoring_configuration"
+              name="Configuration"
+              parent="menu_credit_scoring_root"
+              sequence="100"/>
+
+    <!-- Credit Scoring Menu Items -->
+    <menuitem id="menu_credit_score"
+              name="Dashboard"
+              parent="menu_credit_scoring_main"
+              sequence="10"/>
+
+    <!-- Configuration Menu Items -->
+    <menuitem id="menu_credit_model"
+              name="Settings"
+              parent="menu_credit_scoring_configuration"
+              sequence="10"/>
+</odoo>

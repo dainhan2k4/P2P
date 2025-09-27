@@ -1,0 +1,346 @@
+/* Dashboard Stats Styles - Professional Layout */
+.o_field_dashboard_stats {
+    margin-bottom: 20px;
+    min-height: 150px;
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+.p2p-stats-container {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    width: 100%;
+    max-width: 100%;
+    min-height: 350px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.p2p-stats-container:hover {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    transform: translateY(-2px);
+}
+
+/* Chart Header - Professional styling */
+.p2p-chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px 12px 20px;
+    border-bottom: 1px solid #f1f5f9;
+    background: linear-gradient(90deg, #f8fafc 0%, #ffffff 100%);
+    margin: 0;
+}
+
+.p2p-stats-title {
+    margin: 0;
+    color: #1e293b;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    position: relative;
+    padding-left: 12px;
+}
+
+.p2p-stats-title:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 20px;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    border-radius: 2px;
+}
+
+/* Chart Type Selector - Modern styling */
+.p2p-stats-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.p2p-stats-controls .control-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #64748b;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.chart-type-selector {
+    font-size: 13px;
+    padding: 6px 12px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #475569;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    min-width: 120px;
+    cursor: pointer;
+}
+
+.chart-type-selector:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.chart-type-selector:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* Chart Wrapper */
+.p2p-chart-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.p2p-chart-wrapper canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    border-radius: 8px;
+}
+
+/* Loading State - Modern design */
+.p2p-stats-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    margin: 20px;
+    border-radius: 12px;
+    border: 2px dashed #0ea5e9;
+}
+
+.loading-content {
+    text-align: center;
+    color: #0284c7;
+}
+
+.loading-content i {
+    font-size: 2rem;
+    margin-bottom: 12px;
+    color: #0ea5e9;
+}
+
+.loading-content p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Error State - Professional error styling */
+.p2p-stats-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+    margin: 20px;
+    border-radius: 12px;
+    border: 2px dashed #f87171;
+}
+
+.error-content {
+    text-align: center;
+    color: #dc2626;
+}
+
+.error-content i {
+    font-size: 2rem;
+    margin-bottom: 12px;
+    color: #ef4444;
+}
+
+.error-content p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Empty State - Elegant empty state */
+.p2p-stats-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+    margin: 20px;
+    border-radius: 12px;
+    border: 2px dashed #d1d5db;
+}
+
+.empty-content {
+    text-align: center;
+    color: #6b7280;
+}
+
+.empty-content i {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    color: #9ca3af;
+    opacity: 0.7;
+}
+
+.empty-content p {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.empty-subtitle {
+    font-size: 13px;
+    color: #9ca3af;
+    font-style: italic;
+}
+
+/* Data table styles - Refined */
+.p2p-stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.p2p-stats-table th {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    font-weight: 600;
+    text-align: center !important;
+    padding: 12px 16px;
+    border-bottom: 2px solid #e2e8f0;
+    color: #475569;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+.p2p-stats-table td {
+    padding: 10px 16px;
+    text-align: right;
+    border-top: 1px solid #f1f5f9;
+    color: #374151;
+    font-size: 14px;
+}
+
+.p2p-stats-table td:first-child {
+    text-align: left;
+    font-weight: 500;
+    color: #1e293b;
+}
+
+.p2p-stats-table tbody tr:hover {
+    background-color: #f8fafc;
+    transition: background-color 0.2s ease;
+}
+
+.p2p-stats-table tfoot tr {
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+    font-weight: 600;
+}
+
+.p2p-stats-table tfoot td {
+    border-top: 2px solid #cbd5e1;
+    color: #1e293b;
+}
+
+/* Debug info styling */
+.p2p-stats-debug {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    padding: 12px;
+    margin-top: 16px;
+    font-size: 12px;
+    color: #475569;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .p2p-chart-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 16px;
+    }
+    
+    .p2p-stats-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .chart-type-selector {
+        min-width: 140px;
+    }
+    
+    .p2p-stats-container {
+        min-height: 300px;
+    }
+    
+    .p2p-chart-wrapper {
+        padding: 16px;
+    }
+    
+    .p2p-stats-loading,
+    .p2p-stats-error,
+    .p2p-stats-empty {
+        height: 250px;
+        margin: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .p2p-stats-title {
+        font-size: 16px;
+    }
+    
+    .p2p-stats-table {
+        font-size: 12px;
+    }
+    
+    .p2p-stats-table th,
+    .p2p-stats-table td {
+        padding: 8px 12px;
+    }
+}
+
+/* Odoo Integration - Enhanced */
+.o_field_widget.o_field_p2p_dashboard_graph {
+    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.o_field_p2p_dashboard_graph .p2p-stats-container,
+.o_field_widget.o_readonly_modifier.o_field_p2p_dashboard_graph .p2p-stats-container {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.o_field_p2p_dashboard_graph .p2p-chart-wrapper,
+.o_field_widget.o_readonly_modifier.o_field_p2p_dashboard_graph .p2p-chart-wrapper {
+    width: 100% !important;
+}
+
+.o_field_p2p_dashboard_graph canvas,
+.o_field_widget.o_readonly_modifier.o_field_p2p_dashboard_graph canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}

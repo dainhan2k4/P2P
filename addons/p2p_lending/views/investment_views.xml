@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- List View -->
+    <record id="view_p2p_investment_list" model="ir.ui.view">
+        <field name="name">p2p.investment.list</field>
+        <field name="model">p2p.investment</field>
+        <field name="arch" type="xml">
+            <list string="Danh sách đầu tư">
+                <field name="name"/>
+                <field name="investor_id"/>
+                <field name="loan_id"/>
+                <field name="amount" sum="Tổng cộng"/>
+                <field name="expected_return"/>
+                <field name="date"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_p2p_investment_form" model="ir.ui.view">
+        <field name="name">p2p.investment.form</field>
+        <field name="model">p2p.investment</field>
+        <field name="arch" type="xml">
+            <form string="Đầu tư">
+                <header>
+                    <button name="action_confirm" string="Xác nhận" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_cancel" string="Hủy" class="oe_highlight" invisible="state != 'draft'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,completed,cancelled"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="investor_id" options="{'no_create': True}"/>
+                            <field name="loan_id" options="{'no_create': True}"/>
+                            <field name="date"/>
+                            <field name="state"/>
+                        </group>
+                        <group>
+                            <field name="amount"/>
+                            <field name="expected_return"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Thanh toán">
+                            <field name="payment_ids">
+                                <list>
+                                    <field name="payment_date"/>
+                                    <field name="amount"/>
+                                    <field name="principal"/>
+                                    <field name="interest"/>
+                                    <field name="state" widget="badge"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="p2p_lending.action_p2p_investment" model="ir.actions.act_window">
+        <field name="name">Đầu tư</field>
+        <field name="res_model">p2p.investment</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo khoản đầu tư mới
+            </p>
+        </field>
+    </record>
+</odoo>

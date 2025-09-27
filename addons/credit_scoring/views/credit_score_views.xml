@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Credit Score Tree View -->
+    <record id="view_credit_score_tree" model="ir.ui.view">
+        <field name="name">credit.score.tree</field>
+        <field name="model">credit.score</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Credit Scores" decoration-success="recommendation == 'approve'" decoration-warning="recommendation == 'review'" decoration-danger="recommendation == 'reject'">
+                <field name="name"/>
+                <field name="borrower_id"/>
+                <field name="loan_id"/>
+                <field name="score"/>
+                <field name="score_range"/>
+                <field name="pd_value"/>
+                <field name="expected_loss"/>
+                <field name="recommendation"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Credit Score Form View -->
+    <record id="view_credit_score_form" model="ir.ui.view">
+        <field name="name">credit.score.form</field>
+        <field name="model">credit.score</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Credit Score">
+                <header>
+                    <field name="recommendation" widget="statusbar" statusbar_visible="approve,review,reject"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="borrower_id"/>
+                            <field name="loan_id"/>
+                            <field name="model_id"/>
+                            <field name="create_date"/>
+                            <field name="create_uid"/>
+                        </group>
+                        <group>
+                            <field name="score" widget="progressbar" options="{'max_value': 850, 'min_value': 300}"/>
+                            <field name="score_range"/>
+                            <field name="pd_value"/>
+                            <field name="ead_value"/>
+                            <field name="lgd_value"/>
+                            <field name="expected_loss"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Input Features">
+                            <field name="input_features"/>
+                        </page>
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Credit Score Search View -->
+    <record id="view_credit_score_search" model="ir.ui.view">
+        <field name="name">credit.score.search</field>
+        <field name="model">credit.score</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search string="Search Credit Scores">
+                <field name="name"/>
+                <field name="borrower_id"/>
+                <field name="loan_id"/>
+                <field name="score"/>
+                <filter string="Excellent" name="excellent" domain="[('score_range', '=', 'excellent')]"/>
+                <filter string="Very Good" name="very_good" domain="[('score_range', '=', 'very_good')]"/>
+                <filter string="Good" name="good" domain="[('score_range', '=', 'good')]"/>
+                <filter string="Fair" name="fair" domain="[('score_range', '=', 'fair')]"/>
+                <filter string="Poor" name="poor" domain="[('score_range', '=', 'poor')]"/>
+                <separator/>
+                <filter string="Approve" name="approve" domain="[('recommendation', '=', 'approve')]"/>
+                <filter string="Review" name="review" domain="[('recommendation', '=', 'review')]"/>
+                <filter string="Reject" name="reject" domain="[('recommendation', '=', 'reject')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Borrower" name="group_by_borrower" context="{'group_by': 'borrower_id'}"/>
+                    <filter string="Score Range" name="group_by_range" context="{'group_by': 'score_range'}"/>
+                    <filter string="Recommendation" name="group_by_recommendation" context="{'group_by': 'recommendation'}"/>
+                    <filter string="Model" name="group_by_model" context="{'group_by': 'model_id'}"/>
+                    <filter string="Creation Date" name="group_by_date" context="{'group_by': 'create_date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Credit Score Action -->
+    <record id="action_credit_score" model="ir.actions.act_window">
+        <field name="name">Credit Scores</field>
+        <field name="res_model">credit.score</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_credit_score_search"/>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No credit scores yet
+            </p>
+            <p>
+                Use the Credit Scoring Wizard to calculate credit scores for borrowers.
+            </p>
+        </field>
+    </record>
+</odoo>

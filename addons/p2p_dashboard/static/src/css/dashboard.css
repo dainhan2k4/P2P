@@ -1,0 +1,230 @@
+/* Professional Dashboard Styles for P2P Platform */
+
+/* Main Dashboard Container */
+.o_dashboard_container .card {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    height: 100%;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.o_dashboard_container .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.o_dashboard_container .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+}
+
+/* Enhanced Metric Cards */
+.card.shadow {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card.border-left-primary {
+    border-left: 4px solid #3b82f6 !important;
+    background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
+}
+
+.card.border-left-success {
+    border-left: 4px solid #10b981 !important;
+    background: linear-gradient(135deg, #ffffff 0%, #ecfdf5 100%);
+}
+
+.card.border-left-info {
+    border-left: 4px solid #06b6d4 !important;
+    background: linear-gradient(135deg, #ffffff 0%, #ecfeff 100%);
+}
+
+.card.border-left-warning {
+    border-left: 4px solid #f59e0b !important;
+    background: linear-gradient(135deg, #ffffff 0%, #fffbeb 100%);
+}
+
+/* Typography and Utilities */
+.py-2 {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+}
+
+.text-xs {
+    font-size: 0.75rem !important;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+.font-weight-bold {
+    font-weight: 700 !important;
+}
+
+.text-uppercase {
+    text-transform: uppercase !important;
+}
+
+.text-gray-800 {
+    color: #1f2937 !important;
+}
+
+.text-gray-300 {
+    color: #d1d5db !important;
+}
+
+/* Professional Color Scheme */
+.o_dashboard_container .text-primary {
+    color: #3b82f6 !important;
+}
+
+.o_dashboard_container .text-success {
+    color: #10b981 !important;
+}
+
+.o_dashboard_container .text-info {
+    color: #06b6d4 !important;
+}
+
+.o_dashboard_container .text-warning {
+    color: #f59e0b !important;
+}
+
+.o_dashboard_container .text-danger {
+    color: #ef4444 !important;
+}
+
+/* Enhanced Headers */
+.o_dashboard_container h3 {
+    color: #1e293b;
+    font-weight: 700;
+    font-size: 1.5rem;
+    border-bottom: 3px solid #e5e7eb;
+    padding-bottom: 12px;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.o_dashboard_container h3:after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+    border-radius: 2px;
+}
+
+.o_dashboard_container h4,
+.o_dashboard_container h5 {
+    color: #374151;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+/* Modern Card Headers */
+.card-header.bg-primary {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+    border-bottom: none;
+    border-radius: 12px 12px 0 0 !important;
+}
+
+.card-header.bg-success {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+    border-bottom: none;
+    border-radius: 12px 12px 0 0 !important;
+}
+
+.card-header.bg-info {
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%) !important;
+    border-bottom: none;
+    border-radius: 12px 12px 0 0 !important;
+}
+
+.card-header.bg-warning {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+    border-bottom: none;
+    border-radius: 12px 12px 0 0 !important;
+    color: #ffffff !important;
+}
+
+/* Chart Integration - Removed duplicated styles and enhanced */
+.o_field_dashboard_graph {
+    position: relative;
+    width: 100%;
+    min-height: 350px;
+    display: block;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Alert Enhancement */
+.alert-primary {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    border: 1px solid #93c5fd;
+    color: #1e40af;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .o_dashboard_container .card {
+        margin-bottom: 1rem;
+    }
+    
+    .o_dashboard_container h3 {
+        font-size: 1.25rem;
+    }
+    
+    .text-xs {
+        font-size: 0.7rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .card.py-2 .card-body {
+        padding: 0.75rem;
+    }
+    
+    .o_dashboard_container h3 {
+        font-size: 1.1rem;
+        padding-bottom: 8px;
+    }
+}
+
+/* Animation Enhancements */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.o_dashboard_container .card {
+    animation: slideInUp 0.5s ease-out;
+}
+
+/* Focus and Interaction States */
+.card:focus-within {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Grid Layout Improvements */
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.no-gutters > .col {
+    padding-right: 0;
+    padding-left: 0;
+}

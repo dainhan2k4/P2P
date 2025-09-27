@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_lc_root" name="Lending Club" sequence="10"/>
+
+    <record id="action_lc_loan" model="ir.actions.act_window">
+        <field name="name">Khoản vay</field>
+        <field name="res_model">lc.loan</field>
+        <field name="view_mode">list,form,graph,pivot</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="action_lc_import_wizard" model="ir.actions.act_window">
+        <field name="name">Import CSV/XLSX</field>
+        <field name="res_model">lc.import.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- Action for P2P Integration -->
+    <record id="action_lc_loan_from_p2p" model="ir.actions.act_window">
+        <field name="name">Lịch sử khoản vay Lending Club</field>
+        <field name="res_model">lc.loan</field>
+        <field name="view_mode">list,form,graph,pivot</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Không có lịch sử khoản vay Lending Club!
+            </p>
+            <p>
+                Import lịch sử khoản vay Lending Club để phân tích và chuyển đổi sang P2P Loan.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_lc_data" name="Lịch sử khoản vay" parent="menu_lc_root" sequence="10"/>
+    <menuitem id="menu_lc_loan" name="Khoản vay" parent="menu_lc_data" action="action_lc_loan"/>
+    <menuitem id="menu_lc_import" name="Import CSV" parent="menu_lc_data" action="action_lc_import_wizard" sequence="20"/>
+
+    <menuitem id="menu_lc_integration" name="Tích hợp" parent="menu_lc_root" sequence="20"/>
+    <menuitem id="menu_lc_to_p2p" name="Chuyển đổi sang P2P" parent="menu_lc_integration" action="action_lc_to_p2p_wizard" sequence="10"/>
+    <menuitem id="menu_lc_train_models" name="Train Models" parent="menu_lc_integration" action="action_train_models_wizard" sequence="20"/>
+
+    <!-- Menu item trong P2P Lending (nếu module p2p_lending được cài đặt) -->
+    <menuitem id="menu_lc_data_from_p2p" name="Lịch sử Lending Club" parent="p2p_lending_core.menu_p2p_loans" action="action_lc_loan_from_p2p" sequence="20"/>
+</odoo>
+

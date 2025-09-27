@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Dashboard Form View -->
+    <record id="view_p2p_dashboard_form" model="ir.ui.view">
+        <field name="name">p2p.dashboard.form</field>
+        <field name="model">p2p.dashboard</field>
+        <field name="arch" type="xml">
+            <form string="Bảng điều khiển P2P Core" create="false" edit="false" delete="false">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="prefer_bridge"/>
+                            <button name="action_refresh_dashboard" string="Cập nhật dữ liệu" type="object" class="btn-primary"/>
+                        </group>
+                        <!-- <group>
+                            <field name="company_id" groups="base.group_multi_company" readonly="1"/>
+                            <field name="models_accessible" invisible="1"/>
+                            <field name="access_status" widget="text" readonly="1" invisible="models_accessible"/>
+                        </group> -->
+                    </group>
+                    <notebook>
+                        <!-- Tổng quan -->
+                        <page string="Tổng quan" name="overview">
+                            <div class="o_dashboard_container mt-4">
+                                <!-- Thông tin hồ sơ vay -->
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card mb-4">
+                                            <div class="card-header bg-primary text-gray-300">
+                                                <h4 class="mb-0 text-gray-300">Tổng quan hồ sơ vay</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                                                        <div class="card shadow h-100 py-2">
+                                                            <div class="card-body">
+                                                                <div class="row no-gutters align-items-center">
+                                                                    <div class="col mr-2">
+                                                                        <div class="text-xs font-weight-bold text-uppercase mb-1">Tổng hồ sơ vay</div>
+                                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                                            <field name="total_loan_applications"/>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                                                        <div class="card shadow h-100 py-2">
+                                                            <div class="card-body">
+                                                                <div class="row no-gutters align-items-center">
+                                                                    <div class="col mr-2">
+                                                                        <div class="text-xs font-weight-bold text-uppercase mb-1">Tổng giá trị đăng ký</div>
+                                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                                            <field name="total_loan_application_amount" widget="monetary"/>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                                                        <div class="card shadow h-100 py-2">
+                                                            <div class="card-body">
+                                                                <div class="row no-gutters align-items-center">
+                                                                    <div class="col mr-2">
+                                                                        <div class="text-xs font-weight-bold text-uppercase mb-1">Đã phê duyệt</div>
+                                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                                            <field name="approved_applications"/>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                                                        <div class="card shadow h-100 py-2">
+                                                            <div class="card-body">
+                                                                <div class="row no-gutters align-items-center">
+                                                                    <div class="col mr-2">
+                                                                        <div class="text-xs font-weight-bold text-uppercase mb-1">Tỷ lệ phê duyệt</div>
+                                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                                            <field name="approval_rate"/>%
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Thông tin giải ngân -->
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card mb-4">
+                                            <div class="card-header bg-primary text-gray-300">
+                                                <h4 class="mb-0 text-gray-300">Tổng quan khoản đầu tư</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                                                        <div class="card shadow h-100 py-2">
+                                                            <div class="card-body">
+                                                                <div class="row no-gutters align-items-center">
+                                                                    <div class="col mr-2">
+                                                                        <div class="text-xs font-weight-bold text-uppercase mb-1">Tổng số khoản đầu tư</div>
+                                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                                            <field name="total_disbursements"/>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                                                        <div class="card shadow h-100 py-2">
+                                                            <div class="card-body">
+                                                                <div class="row no-gutters align-items-center">
+                                                                    <div class="col mr-2">
+                                                                        <div class="text-xs font-weight-bold text-uppercase mb-1">Tổng số tiền đã đầu tư</div>
+                                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                                            <field name="total_disbursed_amount" widget="monetary"/>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                                                        <div class="card shadow h-100 py-2">
+                                                            <div class="card-body">
+                                                                <div class="row no-gutters align-items-center">
+                                                                    <div class="col mr-2">
+                                                                        <div class="text-xs font-weight-bold text-uppercase mb-1">Đã hoàn thành</div>
+                                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                                            <field name="completed_disbursements"/>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                                                        <div class="card shadow h-100 py-2">
+                                                            <div class="card-body">
+                                                                <div class="row no-gutters align-items-center">
+                                                                    <div class="col mr-2">
+                                                                        <div class="text-xs font-weight-bold text-uppercase mb-1">Tỷ lệ thành công</div>
+                                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                                            <field name="disbursement_success_rate"/>%
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                      
+                            </div>
+                        </page>
+
+                        <!-- Biểu đồ tinh gọn: chỉ giữ các chart có dữ liệu thực tế -->
+                        <page string="Phân tích hồ sơ vay" name="loan_analysis">
+                            <div class="row mt-4 mb-4">
+                                   <div class="alert alert-primary" role="alert" style="margin-top:10px;">
+                                       Nguồn dữ liệu hồ sơ vay: <strong><field name="loan_data_source" readonly="1"/></strong>
+                                   </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <field name="chart_application_status" widget="p2p_dashboard_graph" options="{'type': 'pie'}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <field name="chart_loan_amount_by_status" widget="p2p_dashboard_graph" options="{'type': 'bar'}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Hàng mới: các biểu đồ bổ sung -->
+                            <div class="row mt-2 mb-4">
+                                <div class="col-md-6 mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <field name="chart_loans_by_type" widget="p2p_dashboard_graph" options="{'type': 'doughnut'}"/>
+                                            <div class="o_dashboard_subtitle" modifiers="{&quot;invisible&quot;: [[&quot;loans_by_type_label&quot;, &quot;=&quot;, false]]}">
+                                                <field name="loans_by_type_label" readonly="1" nolabel="1"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <field name="chart_loans_by_purpose" widget="p2p_dashboard_graph" options="{'type': 'pie'}"/>
+                                            <div class="o_dashboard_subtitle" modifiers="{&quot;invisible&quot;: [[&quot;loans_by_purpose_label&quot;, &quot;=&quot;, false]]}">
+                                                <field name="loans_by_purpose_label" readonly="1" nolabel="1"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-2 mb-4">
+                                <div class="col-md-6 mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <field name="chart_loans_by_credit_tier" widget="p2p_dashboard_graph" options="{'type': 'bar'}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </page>
+
+                        <page string="Phân tích khoản đầu tư" name="disbursement_analysis">
+                            <div class="row mt-4 mb-4">
+                                   <div class="alert alert-primary" role="alert" style="margin-top:10px;">
+                                       Nguồn dữ liệu giải ngân: <strong><field name="disb_data_source" readonly="1"/></strong>
+                                   </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <field name="chart_disbursement_status" widget="p2p_dashboard_graph" options="{'type': 'pie'}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Dashboard List View -->
+    <record id="view_p2p_dashboard_list" model="ir.ui.view">
+        <field name="name">p2p.dashboard.list</field>
+        <field name="model">p2p.dashboard</field>
+        <field name="arch" type="xml">
+            <list string="Bảng điều khiển P2P Core">
+                <field name="name"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="total_loan_applications"/>
+                <field name="total_loan_application_amount" sum="Tổng giá trị đăng ký vay"/>
+                <field name="total_disbursements"/>
+                <field name="total_disbursed_amount" sum="Tổng số tiền đã giải ngân"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Dashboard Search View -->
+    <record id="view_p2p_dashboard_search" model="ir.ui.view">
+        <field name="name">p2p.dashboard.search</field>
+        <field name="model">p2p.dashboard</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm bảng điều khiển P2P Core">
+                <field name="name"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <filter string="Tháng này" name="this_month"
+                        domain="[('date_from','&lt;=', datetime.date.today()), ('date_to','&gt;=', datetime.date.today())]"/>
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Công ty" name="company" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Dashboard Action -->
+    <record id="action_p2p_dashboard" model="ir.actions.act_window">
+        <field name="name">Bảng điều khiển P2P Core</field>
+        <field name="res_model">p2p.dashboard</field>
+        <field name="view_mode">form,list</field>
+        <field name="search_view_id" ref="view_p2p_dashboard_search"/>
+        <field name="context">{'create': True}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo bảng điều khiển P2P Core đầu tiên của bạn
+            </p>
+            <p>
+                Bảng điều khiển P2P Core cho phép bạn theo dõi và phân tích các chỉ số quan trọng
+                từ hệ thống P2P Lending Core: hồ sơ vay, giải ngân, người dùng và hiệu suất hệ thống.
+            </p>
+        </field>
+    </record>
+
+    <!-- Action tự động mở dashboard -->
+    <record id="action_open_default_dashboard" model="ir.actions.server">
+        <field name="name">Mở Dashboard mặc định</field>
+        <field name="model_id" ref="model_p2p_dashboard"/>
+        <field name="state">code</field>
+        <field name="code">
+dashboard = model.get_default_dashboard()
+action = {
+    'type': 'ir.actions.act_window',
+    'res_model': 'p2p.dashboard',
+    'res_id': dashboard.id,
+    'view_mode': 'form',
+    'target': 'current',
+}
+        </field>
+    </record>
+</odoo>

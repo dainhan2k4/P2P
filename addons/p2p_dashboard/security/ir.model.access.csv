@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_p2p_dashboard_all,p2p.dashboard.all,model_p2p_dashboard,base.group_user,1,1,1,1
+access_p2p_dashboard_manager,p2p.dashboard.manager,model_p2p_dashboard,base.group_system,1,1,1,1
+access_p2p_permission_checker,p2p.permission.checker,model_p2p_permission_checker,base.group_user,1,1,1,1
+access_p2p_data_debug_checker,p2p.data.debug.checker,model_p2p_data_debug_checker,base.group_user,1,1,1,1
+access_loan_application_dashboard,loan.application.dashboard,p2p_lending_core.model_loan_application,base.group_user,1,0,0,0
+access_loan_disbursement_dashboard,loan.disbursement.dashboard,p2p_lending_core.model_loan_disbursement,base.group_user,1,0,0,0
+access_loan_type_dashboard,loan.type.dashboard,p2p_lending_core.model_loan_type,base.group_user,1,0,0,0
+access_p2p_wallet_dashboard,p2p.wallet.dashboard,p2p_lending_core.model_p2p_wallet,base.group_user,1,0,0,0
+access_p2p_borrower_dashboard,p2p.borrower.dashboard,p2p_lending_core.model_p2p_borrower,base.group_user,1,0,0,0

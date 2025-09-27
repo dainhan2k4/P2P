@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Sync Wizard Form View -->
+        <record id="view_p2p_sync_wizard_form" model="ir.ui.view">
+            <field name="name">p2p.sync.wizard.form</field>
+            <field name="model">p2p.sync.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Đồng bộ dữ liệu từ MongoDB">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="state" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="sync_borrowers"/>
+                            <field name="sync_loans"/>
+                            <field name="sync_investors"/>
+                            <field name="sync_investments"/>
+                        </group>
+                    </group>
+                    
+                    <group string="Kết quả đồng bộ" attrs="{'invisible': [('state', '=', 'draft')]}">
+                        <group>
+                            <field name="result_borrowers" readonly="1" attrs="{'invisible': [('sync_borrowers', '=', False)]}"/>
+                            <field name="result_loans" readonly="1" attrs="{'invisible': [('sync_loans', '=', False)]}"/>
+                        </group>
+                        <group>
+                            <field name="result_investors" readonly="1" attrs="{'invisible': [('sync_investors', '=', False)]}"/>
+                            <field name="result_investments" readonly="1" attrs="{'invisible': [('sync_investments', '=', False)]}"/>
+                        </group>
+                    </group>
+                    
+                    <footer>
+                        <button name="action_sync_all" string="Bắt đầu đồng bộ" type="object" 
+                                class="btn-primary" attrs="{'invisible': [('state', 'in', ['running', 'done'])]}"/>
+                        <button name="action_view_results" string="Xem kết quả" type="object" 
+                                class="btn-secondary" attrs="{'invisible': [('state', '!=', 'done')]}"/>
+                        <button string="Đóng" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <!-- Sync Wizard Action -->
+        <record id="action_p2p_sync_wizard" model="ir.actions.act_window">
+            <field name="name">Đồng bộ dữ liệu MongoDB</field>
+            <field name="res_model">p2p.sync.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="view_p2p_sync_wizard_form"/>
+        </record>
+        
+        <!-- Menu Item -->
+        <menuitem id="menu_p2p_sync_wizard"
+                  name="Đồng bộ MongoDB"
+                  parent="p2p_lending_core.menu_p2p_main"
+                  action="action_p2p_sync_wizard"
+                  sequence="100"/>
+        
+    </data>
+</odoo>

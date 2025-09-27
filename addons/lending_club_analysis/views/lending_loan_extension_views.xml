@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extend P2P Lending Loan List View -->
+    <record id="view_p2p_loan_tree_extension" model="ir.ui.view">
+        <field name="name">p2p.loan.tree.extension</field>
+        <field name="model">p2p.loan</field>
+        <field name="inherit_id" ref="p2p_lending.view_p2p_loan_list"/>
+        <field name="arch" type="xml">
+            <!-- Add lc_loan_count field to list -->
+            <xpath expr="//field[@name='term']" position="after">
+                <field name="lc_loan_count" string="LC Loans"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Extend P2P Lending Loan Form View -->
+    <record id="view_p2p_loan_form_extension" model="ir.ui.view">
+        <field name="name">p2p.loan.form.extension</field>
+        <field name="model">p2p.loan</field>
+        <field name="inherit_id" ref="p2p_lending.view_p2p_loan_form"/>
+        <field name="arch" type="xml">
+            <!-- Add Lending Club section to form -->
+            <xpath expr="//group[1]/group[2]" position="after">
+                <group string="Lending Club Integration">
+                    <field name="lc_loan_count" widget="statinfo" string="LC Loans"/>
+                    <button name="action_view_lc_loans" string="View LC Loans" type="object" class="oe_stat_button" icon="fa-list"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

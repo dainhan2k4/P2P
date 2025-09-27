@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Credit Scoring Wizard Form View -->
+    <record id="view_credit_scoring_wizard_form" model="ir.ui.view">
+        <field name="name">credit.scoring.wizard.form</field>
+        <field name="model">credit.scoring.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Credit Scoring">
+                <sheet>
+                    <group states="input">
+                        <group>
+                            <field name="borrower_id" options="{'no_create': True}"/>
+                            <field name="loan_id" options="{'no_create': True}"/>
+                            <field name="pd_model_id" options="{'no_create': True}"/>
+                            <field name="ead_model_id" options="{'no_create': True}"/>
+                            <field name="lgd_model_id" options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="loan_amount" readonly="1"/>
+                            <field name="loan_term" readonly="1"/>
+                            <field name="loan_purpose" readonly="1"/>
+                            <field name="annual_income" readonly="1"/>
+                            <field name="employment_length" readonly="1"/>
+                            <field name="home_ownership" readonly="1"/>
+                            <field name="dti_ratio" readonly="1"/>
+                        </group>
+                    </group>
+                    <group states="result" string="Credit Scoring Results">
+                        <group>
+                            <field name="score" readonly="1"/>
+                            <field name="pd_value" readonly="1"/>
+                            <field name="ead_value" readonly="1"/>
+                            <field name="lgd_value" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="expected_loss" readonly="1"/>
+                            <field name="recommendation" readonly="1" widget="badge" decoration-success="recommendation == 'approve'" decoration-warning="recommendation == 'review'" decoration-danger="recommendation == 'reject'"/>
+                        </group>
+                    </group>
+                    <field name="state" invisible="1"/>
+                </sheet>
+                <footer>
+                    <button name="action_calculate_score" string="Calculate Score" type="object" class="btn-primary" states="input"/>
+                    <button name="action_apply_to_loan" string="Apply to Loan" type="object" class="btn-primary" states="result" attrs="{'invisible': [('loan_id', '=', False)]}"/>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Credit Scoring Wizard Action -->
+    <record id="action_credit_scoring_wizard" model="ir.actions.act_window">
+        <field name="name">Credit Scoring</field>
+        <field name="res_model">credit.scoring.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_credit_scoring_wizard_form"/>
+    </record>
+</odoo>

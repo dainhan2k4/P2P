@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Permission Checker Wizard -->
+    <record id="view_permission_checker_form" model="ir.ui.view">
+        <field name="name">p2p.permission.checker.form</field>
+        <field name="model">p2p.permission.checker</field>
+        <field name="arch" type="xml">
+            <form string="Kiểm tra quyền hạn">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>🔒 Kiểm tra quyền hạn Dashboard</h1>
+                    </div>
+                    
+                    <group>
+                        <field name="result" widget="html" colspan="2"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="🔍 Kiểm tra ngay" name="check_all_permissions" type="object" class="btn-primary"/>
+                    <button string="Đóng" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to open Permission Checker -->
+    <record id="action_permission_checker" model="ir.actions.act_window">
+        <field name="name">Kiểm tra quyền hạn</field>
+        <field name="res_model">p2p.permission.checker</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

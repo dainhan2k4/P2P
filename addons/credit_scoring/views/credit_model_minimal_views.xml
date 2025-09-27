@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Minimal Tree View -->
+    <record id="minimal_credit_model_tree" model="ir.ui.view">
+        <field name="name">minimal.credit.model.tree</field>
+        <field name="model">credit.model</field>
+        <field name="type">tree</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Minimal Form View -->
+    <record id="minimal_credit_model_form" model="ir.ui.view">
+        <field name="name">minimal.credit.model.form</field>
+        <field name="model">credit.model</field>
+        <field name="type">form</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Minimal Action -->
+    <record id="action_minimal_credit_model" model="ir.actions.act_window">
+        <field name="name">Minimal Credit Models</field>
+        <field name="res_model">credit.model</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_lc_loan_user,access_lc_loan_user,model_lc_loan,base.group_user,1,1,1,1
+access_lc_to_p2p_wizard_user,access_lc_to_p2p_wizard_user,model_lc_to_p2p_wizard,base.group_user,1,1,1,1
+

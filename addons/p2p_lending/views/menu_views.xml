@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extend p2p_lending_core menus instead of creating duplicates -->
+
+    <!-- Add Enhanced Borrowers under P2P Data -->
+    <menuitem id="p2p_lending.menu_enhanced_borrowers"
+              name="Người vay (Nâng cao)"
+              parent="p2p_lending_core.menu_p2p_borrowers"
+              action="p2p_lending.action_p2p_borrower"
+              sequence="5"
+              groups="base.group_user"/>
+
+    <!-- Add Enhanced Loans under P2P Data -->
+    <menuitem id="p2p_lending.menu_enhanced_loans"
+              name="Khoản vay (Nâng cao)"
+              parent="p2p_lending_core.menu_p2p_loans"
+              action="p2p_lending.action_p2p_loan"
+              sequence="5"
+              groups="base.group_user"/>
+
+    <!-- Add Enhanced Investors under Bridge -->
+    <menuitem id="p2p_lending.menu_enhanced_investors"
+              name="Nhà đầu tư (Nâng cao)"
+              parent="p2p_lending_core.menu_p2p_investors"
+              action="p2p_lending.action_p2p_investor"
+              sequence="5"
+              groups="base.group_user"/>
+
+    <!-- Add Enhanced Investments under P2P Data -->
+    <menuitem id="p2p_lending.menu_enhanced_investments"
+              name="Đầu tư (Nâng cao)"
+              parent="p2p_lending_core.menu_p2p_investments"
+              action="p2p_lending.action_p2p_investment"
+              sequence="5"
+              groups="base.group_user"/>
+
+    <!-- Payments Menu under main P2P menu -->
+    <menuitem id="p2p_lending.menu_payments"
+              name="Thanh toán"
+              parent="p2p_lending_core.menu_p2p_main"
+              sequence="25"
+              groups="base.group_user"/>
+
+    <menuitem id="p2p_lending.menu_loan_payments"
+              name="Thanh toán khoản vay"
+              parent="p2p_lending.menu_payments"
+              action="p2p_lending.action_loan_payment"
+              groups="base.group_user"/>
+
+    <menuitem id="p2p_lending.menu_investment_payments"
+              name="Thanh toán đầu tư"
+              parent="p2p_lending.menu_payments"
+              action="p2p_lending.action_investment_payment"
+              groups="base.group_user"/>
+</odoo>

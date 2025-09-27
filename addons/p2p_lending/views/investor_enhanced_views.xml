@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        
+        <!-- list View for Enhanced Investor -->
+        <record id="p2p_investor_enhanced_list_view" model="ir.ui.view">
+            <field name="name">p2p.investor.enhanced.list</field>
+            <field name="model">p2p.investor.enhanced</field>
+            <field name="arch" type="xml">
+                <list string="Nhà đầu tư nâng cao" decoration-info="state=='draft'" decoration-success="state=='active'" decoration-warning="state=='suspended'" decoration-danger="state=='blocked'">
+                    <field name="name"/>
+                    <field name="display_name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="investment_capacity"/>
+                    <field name="total_invested"/>
+                    <field name="roi_percentage"/>
+                    <field name="state"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Form View for Enhanced Investor -->
+        <record id="p2p_investor_enhanced_form_view" model="ir.ui.view">
+            <field name="name">p2p.investor.enhanced.form</field>
+            <field name="model">p2p.investor.enhanced</field>
+            <field name="arch" type="xml">
+                <form string="Nhà đầu tư nâng cao">
+                    <header>
+                        <button name="action_activate" string="Kích hoạt" type="object" class="btn-primary" attrs="{'invisible': [('state', '!=', 'verified')]}"/>
+                        <button name="action_suspend" string="Tạm dừng" type="object" class="btn-warning" attrs="{'invisible': [('state', '!=', 'active')]}"/>
+                        <button name="action_block" string="Khóa" type="object" class="btn-danger" attrs="{'invisible': [('state', 'in', ['blocked', 'inactive'])]}"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,pending_verification,verified,active"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="display_name" placeholder="Tên đầy đủ"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group string="Thông tin cá nhân">
+                                <field name="first_name"/>
+                                <field name="middle_name"/>
+                                <field name="last_name"/>
+                                <field name="date_of_birth"/>
+                                <field name="age" readonly="1"/>
+                                <field name="gender"/>
+                                <field name="marital_status"/>
+                                <field name="nationality"/>
+                            </group>
+                            <group string="Thông tin liên lạc">
+                                <field name="phone"/>
+                                <field name="phone_secondary"/>
+                                <field name="email"/>
+                                <field name="email_secondary"/>
+                                <field name="website"/>
+                            </group>
+                        </group>
+                        
+                        <group>
+                            <group string="Thông tin định danh">
+                                <field name="id_number"/>
+                                <field name="id_issue_date"/>
+                                <field name="id_issue_place"/>
+                                <field name="passport_number"/>
+                                <field name="passport_expiry"/>
+                            </group>
+                            <group string="Địa chỉ">
+                                <field name="address_home"/>
+                                <field name="address_temporary"/>
+                                <field name="city"/>
+                                <field name="district"/>
+                                <field name="ward"/>
+                                <field name="postal_code"/>
+                                <field name="country_id"/>
+                            </group>
+                        </group>
+                        
+                        <group>
+                            <group string="Thông tin tài chính">
+                                <field name="monthly_income"/>
+                                <field name="annual_income" readonly="1"/>
+                                <field name="income_source"/>
+                                <field name="total_assets"/>
+                                <field name="liquid_assets"/>
+                                <field name="real_estate_value"/>
+                                <field name="vehicle_value"/>
+                                <field name="other_assets"/>
+                            </group>
+                            <group string="Nợ và nghĩa vụ">
+                                <field name="total_debt"/>
+                                <field name="monthly_debt_payment"/>
+                                <field name="debt_to_income_ratio" readonly="1"/>
+                            </group>
+                        </group>
+                        
+                        <group>
+                            <group string="Thông tin đầu tư">
+                                <field name="investment_capacity"/>
+                                <field name="available_capital" readonly="1"/>
+                                <field name="minimum_investment"/>
+                                <field name="maximum_investment"/>
+                                <field name="risk_tolerance"/>
+                                <field name="investment_experience"/>
+                                <field name="preferred_investment_types"/>
+                            </group>
+                            <group string="Nghề nghiệp">
+                                <field name="employment_status"/>
+                                <field name="employer_name"/>
+                                <field name="job_title"/>
+                                <field name="employment_length_years"/>
+                                <field name="industry"/>
+                            </group>
+                        </group>
+                        
+                        <group>
+                            <group string="Liên hệ khẩn cấp">
+                                <field name="emergency_contact_name"/>
+                                <field name="emergency_contact_phone"/>
+                                <field name="emergency_contact_relationship"/>
+                                <field name="emergency_contact_address"/>
+                            </group>
+                            <group string="KYC/AML">
+                                <field name="kyc_status"/>
+                                <field name="kyc_verification_date"/>
+                                <field name="kyc_expiry_date"/>
+                                <field name="aml_risk_level"/>
+                            </group>
+                        </group>
+                        
+                        <notebook>
+                            <page string="Portfolio" name="portfolio">
+                                <group>
+                                    <group string="Thống kê đầu tư">
+                                        <field name="investment_count" readonly="1"/>
+                                        <field name="total_invested" readonly="1"/>
+                                        <field name="total_returns" readonly="1"/>
+                                        <field name="active_investments" readonly="1"/>
+                                        <field name="roi_percentage" readonly="1"/>
+                                        <field name="average_investment_amount" readonly="1"/>
+                                    </group>
+                                    <group string="Hiệu suất">
+                                        <field name="roi_percentage" readonly="1"/>
+                                        <field name="total_returns" readonly="1"/>
+                                        <field name="total_invested" readonly="1"/>
+                                    </group>
+                                </group>
+                                <field name="investment_ids" readonly="1">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="loan_id"/>
+                                        <field name="amount"/>
+                                        <field name="investment_date"/>
+                                        <field name="state"/>
+                                        <field name="roi_percentage"/>
+                                    </list>
+                                </field>
+                            </page>
+                            
+                            <page string="Tài liệu" name="documents">
+                                <group>
+                                    <field name="id_document" filename="id_document_filename"/>
+                                    <field name="address_proof" filename="address_proof_filename"/>
+                                    <field name="income_proof" filename="income_proof_filename"/>
+                                </group>
+                            </page>
+                            
+                            <page string="Ghi chú" name="notes">
+                                <field name="notes"/>
+                                <field name="internal_notes"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View for Enhanced Investor -->
+        <record id="p2p_investor_enhanced_search_view" model="ir.ui.view">
+            <field name="name">p2p.investor.enhanced.search</field>
+            <field name="model">p2p.investor.enhanced</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm nhà đầu tư">
+                    <field name="name"/>
+                    <field name="display_name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="id_number"/>
+                    <separator/>
+                    <filter string="Đang hoạt động" name="active" domain="[('state', '=', 'active')]"/>
+                    <filter string="Chờ xác minh" name="pending" domain="[('state', '=', 'pending_verification')]"/>
+                    <filter string="Đã xác minh" name="verified" domain="[('state', '=', 'verified')]"/>
+                    <filter string="Bị khóa" name="blocked" domain="[('state', '=', 'blocked')]"/>
+                    <separator/>
+                    <filter string="Rủi ro thấp" name="low_risk" domain="[('risk_tolerance', 'in', ['very_low', 'low'])]"/>
+                    <filter string="Rủi ro trung bình" name="medium_risk" domain="[('risk_tolerance', '=', 'medium')]"/>
+                    <filter string="Rủi ro cao" name="high_risk" domain="[('risk_tolerance', 'in', ['high', 'very_high'])]"/>
+                    <separator/>
+                    <filter string="Đã xác minh KYC" name="kyc_verified" domain="[('kyc_status', '=', 'verified')]"/>
+                    <filter string="Chờ xác minh KYC" name="kyc_pending" domain="[('kyc_status', '=', 'pending')]"/>
+                    <group expand="0" string="Nhóm theo">
+                        <filter string="Trạng thái" name="group_state" context="{'group_by': 'state'}"/>
+                        <filter string="Khả năng chấp nhận rủi ro" name="group_risk" context="{'group_by': 'risk_tolerance'}"/>
+                        <filter string="Tình trạng việc làm" name="group_employment" context="{'group_by': 'employment_status'}"/>
+                        <filter string="KYC Status" name="group_kyc" context="{'group_by': 'kyc_status'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action for Enhanced Investor -->
+        <record id="action_p2p_investor_enhanced" model="ir.actions.act_window">
+            <field name="name">Nhà đầu tư nâng cao</field>
+            <field name="res_model">p2p.investor.enhanced</field>
+            <field name="view_mode">list,form</field>
+            <field name="search_view_id" ref="p2p_investor_enhanced_search_view"/>
+            <field name="context">{'search_default_active': 1}</field>
+        </record>
+
+        <!-- Menu Item for Enhanced Investor -->
+        <menuitem
+            id="menu_p2p_investor_enhanced"
+            name="Nhà đầu tư nâng cao"
+            parent="p2p_lending.menu_p2p_investors"
+            action="action_p2p_investor_enhanced"
+            sequence="10"/>
+
+    </data>
+</odoo>

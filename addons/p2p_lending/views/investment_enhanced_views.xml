@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        
+        <!-- list View for Enhanced Investment -->
+        <record id="p2p_investment_enhanced_list_view" model="ir.ui.view">
+            <field name="name">p2p.investment.enhanced.list</field>
+            <field name="model">p2p.investment.enhanced</field>
+            <field name="arch" type="xml">
+                <list string="Đầu tư nâng cao" decoration-info="state=='draft'" decoration-success="state=='active'" decoration-warning="state=='matured'" decoration-danger="state=='defaulted'">
+                    <field name="name"/>
+                    <field name="investor_id"/>
+                    <field name="loan_id"/>
+                    <field name="borrower_name"/>
+                    <field name="amount"/>
+                    <field name="investment_date"/>
+                    <field name="expected_maturity_date"/>
+                    <field name="roi_percentage"/>
+                    <field name="state"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Form View for Enhanced Investment -->
+        <record id="p2p_investment_enhanced_form_view" model="ir.ui.view">
+            <field name="name">p2p.investment.enhanced.form</field>
+            <field name="model">p2p.investment.enhanced</field>
+            <field name="arch" type="xml">
+                <form string="Đầu tư nâng cao">
+                    <header>
+                        <button name="action_confirm" string="Xác nhận" type="object" class="btn-primary" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                        <button name="action_activate" string="Kích hoạt" type="object" class="btn-success" attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                        <button name="action_mature" string="Đáo hạn" type="object" class="btn-info" attrs="{'invisible': [('state', '!=', 'active')]}"/>
+                        <button name="action_default" string="Vỡ nợ" type="object" class="btn-danger" attrs="{'invisible': [('state', '!=', 'active')]}"/>
+                        <button name="action_cancel" string="Hủy" type="object" class="btn-warning" attrs="{'invisible': [('state', 'in', ['matured', 'cancelled'])]}"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,pending,confirmed,active,matured"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Mã đầu tư"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group string="Thông tin đầu tư">
+                                <field name="investor_id"/>
+                                <field name="loan_id"/>
+                                <field name="borrower_name" readonly="1"/>
+                                <field name="amount"/>
+                                <field name="investment_date"/>
+                                <field name="expected_maturity_date" readonly="1"/>
+                                <field name="actual_maturity_date" readonly="1"/>
+                            </group>
+                            <group string="Thông tin khoản vay">
+                                <field name="loan_amount" readonly="1"/>
+                                <field name="loan_term" readonly="1"/>
+                                <field name="loan_interest_rate" readonly="1"/>
+                                <field name="investment_percentage" readonly="1"/>
+                                <field name="loan_funding_percentage" readonly="1"/>
+                            </group>
+                        </group>
+                        
+                        <group>
+                            <group string="Lợi nhuận">
+                                <field name="interest_rate" readonly="1"/>
+                                <field name="expected_interest" readonly="1"/>
+                                <field name="actual_interest"/>
+                                <field name="total_returns" readonly="1"/>
+                                <field name="roi_percentage" readonly="1"/>
+                                <field name="annualized_roi" readonly="1"/>
+                            </group>
+                            <group string="Rủi ro">
+                                <field name="risk_level" readonly="1"/>
+                                <field name="risk_score" readonly="1"/>
+                                <field name="borrower_credit_score" readonly="1"/>
+                                <field name="insurance_coverage"/>
+                                <field name="collateral_value"/>
+                                <field name="guarantee_amount"/>
+                            </group>
+                        </group>
+                        
+                        <group>
+                            <group string="Thanh toán">
+                                <field name="total_paid" readonly="1"/>
+                                <field name="total_pending" readonly="1"/>
+                                <field name="next_payment_date" readonly="1"/>
+                                <field name="next_payment_amount" readonly="1"/>
+                                <field name="payment_status" readonly="1"/>
+                            </group>
+                            <group string="Thông tin bổ sung">
+                                <field name="investment_purpose"/>
+                                <field name="capital_source"/>
+                                <field name="amount_original"/>
+                                <field name="amount_remaining" readonly="1"/>
+                            </group>
+                        </group>
+                        
+                        <notebook>
+                            <page string="Lịch thanh toán" name="payments">
+                                <field name="payment_schedule_ids" readonly="1">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="payment_date"/>
+                                        <field name="amount"/>
+                                        <field name="principal_amount"/>
+                                        <field name="interest_amount"/>
+                                        <field name="state"/>
+                                        <field name="days_overdue"/>
+                                        <field name="late_fee"/>
+                                        <field name="total_amount"/>
+                                    </list>
+                                </field>
+                            </page>
+                            
+                            <page string="Thông tin rủi ro" name="risk">
+                                <group>
+                                    <group string="Đánh giá rủi ro">
+                                        <field name="risk_level" readonly="1"/>
+                                        <field name="risk_score" readonly="1"/>
+                                        <field name="borrower_credit_score" readonly="1"/>
+                                    </group>
+                                    <group string="Bảo vệ">
+                                        <field name="insurance_coverage"/>
+                                        <field name="collateral_value"/>
+                                        <field name="guarantee_amount"/>
+                                    </group>
+                                </group>
+                            </page>
+                            
+                            <page string="Ghi chú" name="notes">
+                                <field name="notes"/>
+                                <field name="internal_notes"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View for Enhanced Investment -->
+        <record id="p2p_investment_enhanced_search_view" model="ir.ui.view">
+            <field name="name">p2p.investment.enhanced.search</field>
+            <field name="model">p2p.investment.enhanced</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm đầu tư">
+                    <field name="name"/>
+                    <field name="investor_id"/>
+                    <field name="loan_id"/>
+                    <field name="borrower_name"/>
+                    <separator/>
+                    <filter string="Đang hoạt động" name="active" domain="[('state', '=', 'active')]"/>
+                    <filter string="Đã đáo hạn" name="matured" domain="[('state', '=', 'matured')]"/>
+                    <filter string="Vỡ nợ" name="defaulted" domain="[('state', '=', 'defaulted')]"/>
+                    <filter string="Đã hủy" name="cancelled" domain="[('state', '=', 'cancelled')]"/>
+                    <separator/>
+                    <filter string="Rủi ro thấp" name="low_risk" domain="[('risk_level', 'in', ['very_low', 'low'])]"/>
+                    <filter string="Rủi ro trung bình" name="medium_risk" domain="[('risk_level', '=', 'medium')]"/>
+                    <filter string="Rủi ro cao" name="high_risk" domain="[('risk_level', 'in', ['high', 'very_high'])]"/>
+                    <separator/>
+                    <filter string="Đúng hạn" name="on_time" domain="[('payment_status', '=', 'on_time')]"/>
+                    <filter string="Trễ hạn" name="late" domain="[('payment_status', '=', 'late')]"/>
+                    <filter string="Hoàn thành" name="completed" domain="[('payment_status', '=', 'completed')]"/>
+                    <group expand="0" string="Nhóm theo">
+                        <filter string="Trạng thái" name="group_state" context="{'group_by': 'state'}"/>
+                        <filter string="Nhà đầu tư" name="group_investor" context="{'group_by': 'investor_id'}"/>
+                        <filter string="Khoản vay" name="group_loan" context="{'group_by': 'loan_id'}"/>
+                        <filter string="Mức độ rủi ro" name="group_risk" context="{'group_by': 'risk_level'}"/>
+                        <filter string="Trạng thái thanh toán" name="group_payment" context="{'group_by': 'payment_status'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action for Enhanced Investment -->
+        <record id="action_p2p_investment_enhanced" model="ir.actions.act_window">
+            <field name="name">Đầu tư nâng cao</field>
+            <field name="res_model">p2p.investment.enhanced</field>
+            <field name="view_mode">list,form</field>
+            <field name="search_view_id" ref="p2p_investment_enhanced_search_view"/>
+            <field name="context">{'search_default_active': 1}</field>
+        </record>
+
+        <!-- Menu Item for Enhanced Investment -->
+        <menuitem
+            id="menu_p2p_investment_enhanced"
+            name="Đầu tư nâng cao"
+            parent="p2p_lending.menu_p2p_investments"
+            action="action_p2p_investment_enhanced"
+            sequence="10"/>
+
+    </data>
+</odoo>

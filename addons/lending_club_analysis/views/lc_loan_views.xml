@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_lc_loan_tree" model="ir.ui.view">
+        <field name="name">lc.loan.tree</field>
+        <field name="model">lc.loan</field>
+        <field name="arch" type="xml">
+            <list>
+                <!-- Thông tin cơ bản -->
+                <field name="loan_id"/>
+                <field name="member_id"/>
+                <field name="issue_d"/>
+                <field name="loan_amnt"/>
+                <field name="funded_amnt"/>
+                <field name="funded_amnt_inv"/>
+                <field name="int_rate"/>
+                <field name="installment"/>
+                <field name="term"/>
+                <field name="grade"/>
+                <field name="sub_grade"/>
+                <field name="grade_rb"/>
+
+                <!-- Thông tin người vay -->
+                <field name="emp_title"/>
+                <field name="emp_length"/>
+                <field name="home_ownership"/>
+                <field name="annual_inc"/>
+                <field name="verification_status"/>
+                <field name="dti"/>
+                <field name="delinq_2yrs"/>
+                <field name="pub_rec"/>
+
+                <!-- Thông tin tín dụng -->
+                <field name="fico_range_low"/>
+                <field name="fico_range_high"/>
+                <field name="earliest_cr_line"/>
+                <field name="open_acc"/>
+                <field name="total_acc"/>
+                <field name="revol_bal"/>
+                <field name="revol_util"/>
+
+                <!-- Thông tin khoản vay -->
+                <field name="purpose"/>
+                <field name="title"/>
+                <field name="addr_state"/>
+                <field name="zip_code"/>
+                <field name="loan_status"/>
+
+                <!-- Thông tin thanh toán -->
+                <field name="total_pymnt"/>
+                <field name="total_rec_prncp"/>
+                <field name="total_rec_int"/>
+                <field name="total_rec_late_fee"/>
+                <field name="recoveries"/>
+                <field name="last_pymnt_d"/>
+                <field name="last_pymnt_amnt"/>
+
+                <!-- Thông tin mở rộng -->
+                <field name="initial_list_status"/>
+                <field name="policy_code"/>
+                <field name="application_type"/>
+                <field name="next_pymnt_d"/>
+                <field name="last_credit_pull_d"/>
+                <field name="out_prncp"/>
+                <field name="out_prncp_inv"/>
+                <field name="total_pymnt_inv"/>
+                <field name="collection_recovery_fee"/>
+                <field name="collections_12_mths_ex_med"/>
+                <field name="mths_since_last_delinq"/>
+                <field name="mths_since_last_record"/>
+                <field name="mths_since_last_major_derog"/>
+                <field name="inq_last_6mths"/>
+                <field name="inq_fi"/>
+                <field name="inq_last_12m"/>
+                <field name="acc_now_delinq"/>
+                <field name="tot_coll_amt"/>
+                <field name="tot_cur_bal"/>
+                <field name="total_cu_tl"/>
+                <field name="total_rev_hi_lim"/>
+
+                <!-- Hoạt động gần đây -->
+                <field name="open_acc_6m"/>
+                <field name="open_il_6m"/>
+                <field name="open_il_12m"/>
+                <field name="open_il_24m"/>
+                <field name="mths_since_rcnt_il"/>
+                <field name="total_bal_il"/>
+                <field name="il_util"/>
+                <field name="open_rv_12m"/>
+                <field name="open_rv_24m"/>
+                <field name="max_bal_bc"/>
+                <field name="all_util"/>
+
+                <!-- FICO gần nhất & Joint -->
+                <field name="last_fico_range_low"/>
+                <field name="last_fico_range_high"/>
+                <field name="annual_inc_joint"/>
+                <field name="dti_joint"/>
+                <field name="verified_status_joint"/>
+
+                <!-- Phân tích -->
+                <field name="score"/>
+                <field name="grade_rb"/>
+                <field name="p2p_loan_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="lc_loan_action" model="ir.actions.act_window">
+        <field name="name">Khoản vay</field>
+        <field name="res_model">lc.loan</field>
+        <field name="view_mode">list,form,graph,pivot</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- Buttons will be available through menu items instead -->
+
+
+    <record id="view_lc_loan_form" model="ir.ui.view">
+        <field name="name">lc.loan.form</field>
+        <field name="model">lc.loan</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_create_p2p_loan" string="Tạo P2P Loan" type="object"
+                            class="oe_highlight" invisible="p2p_loan_id"/>
+                    <button name="action_create_p2p_loan" string="Xem P2P Loan" type="object"
+                            class="btn-secondary" invisible="not p2p_loan_id"/>
+                </header>
+                <sheet>
+                    <notebook>
+                        <page string="Cơ bản">
+                            <group>
+                                <group>
+                                    <field name="loan_id"/>
+                                    <field name="issue_d"/>
+                                    <field name="term"/>
+                                    <field name="int_rate"/>
+                                    <field name="installment"/>
+                                    <field name="grade"/>
+                                    <field name="sub_grade"/>
+                                </group>
+                                <group>
+                                    <field name="emp_length"/>
+                                    <field name="home_ownership"/>
+                                    <field name="annual_inc"/>
+                                    <field name="dti"/>
+                                    <field name="delinq_2yrs"/>
+                                    <field name="pub_rec"/>
+                                    <field name="fico_range_low"/>
+                                    <field name="fico_range_high"/>
+                                </group>
+                            </group>
+                            <group string="Số liệu thanh toán">
+                                <field name="loan_amnt"/>
+                                <field name="funded_amnt"/>
+                                <field name="total_pymnt"/>
+                                <field name="recoveries"/>
+                            </group>
+                            <group string="Phân tích">
+                                <field name="score" readonly="1"/>
+                                <field name="grade_rb" readonly="1"/>
+                            </group>
+                            <group string="Tích hợp P2P">
+                                <field name="p2p_loan_id" readonly="1"/>
+                            </group>
+                        </page>
+                        <page string="Thông tin mở rộng">
+                            <group>
+                                <group string="Danh tính &amp; Kê khai">
+                                    <field name="lc_listing_id"/>
+                                    <field name="member_id"/>
+                                    <field name="application_type"/>
+                                    <field name="verification_status"/>
+                                    <field name="is_inc_v"/>
+                                    <field name="emp_title"/>
+                                    <field name="zip_code"/>
+                                    <field name="title"/>
+                                    <field name="url"/>
+                                </group>
+                                <group string="Tín dụng/Tài khoản">
+                                    <field name="earliest_cr_line"/>
+                                    <field name="open_acc"/>
+                                    <field name="total_acc"/>
+                                    <field name="revol_bal"/>
+                                    <field name="revol_util"/>
+                                    <field name="total_rev_hi_lim"/>
+                                    <field name="inq_last_6mths"/>
+                                    <field name="inq_fi"/>
+                                    <field name="inq_last_12m"/>
+                                    <field name="acc_now_delinq"/>
+                                    <field name="tot_coll_amt"/>
+                                    <field name="tot_cur_bal"/>
+                                    <field name="total_cu_tl"/>
+                                </group>
+                            </group>
+                            <group string="Hoạt động gần đây">
+                                <field name="open_acc_6m"/>
+                                <field name="open_il_6m"/>
+                                <field name="open_il_12m"/>
+                                <field name="open_il_24m"/>
+                                <field name="mths_since_rcnt_il"/>
+                                <field name="total_bal_il"/>
+                                <field name="il_util"/>
+                                <field name="open_rv_12m"/>
+                                <field name="open_rv_24m"/>
+                                <field name="max_bal_bc"/>
+                                <field name="all_util"/>
+                            </group>
+                            <group string="Trạng thái &amp; Thanh toán">
+                                <field name="loan_status"/>
+                                <field name="initial_list_status"/>
+                                <field name="policy_code"/>
+                                <field name="last_pymnt_d"/>
+                                <field name="last_pymnt_amnt"/>
+                                <field name="next_pymnt_d"/>
+                                <field name="last_credit_pull_d"/>
+                                <field name="funded_amnt_inv"/>
+                                <field name="out_prncp"/>
+                                <field name="out_prncp_inv"/>
+                                <field name="total_pymnt_inv"/>
+                                <field name="total_rec_prncp"/>
+                                <field name="total_rec_int"/>
+                                <field name="total_rec_late_fee"/>
+                                <field name="pymnt_plan"/>
+                                <field name="collection_recovery_fee"/>
+                                <field name="collections_12_mths_ex_med"/>
+                                <field name="mths_since_last_delinq"/>
+                                <field name="mths_since_last_record"/>
+                                <field name="mths_since_last_major_derog"/>
+                            </group>
+                            <group string="FICO gần nhất &amp; Joint">
+                                <field name="last_fico_range_low"/>
+                                <field name="last_fico_range_high"/>
+                                <field name="annual_inc_joint"/>
+                                <field name="dti_joint"/>
+                                <field name="verified_status_joint"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_lc_loan_pivot" model="ir.ui.view">
+        <field name="name">lc.loan.pivot</field>
+        <field name="model">lc.loan</field>
+        <field name="arch" type="xml">
+            <pivot string="Phân tích khoản vay">
+                <field name="loan_amnt" type="measure"/>
+                <field name="funded_amnt" type="measure"/>
+                <field name="funded_amnt_inv" type="measure"/>
+                <field name="total_pymnt" type="measure"/>
+                <field name="total_pymnt_inv" type="measure"/>
+                <field name="int_rate" type="measure"/>
+                <field name="dti" type="measure"/>
+                <field name="annual_inc" type="measure"/>
+                <field name="score" type="measure"/>
+                <field name="grade" type="row"/>
+                <field name="grade_rb" type="col"/>
+                <field name="purpose" type="row"/>
+                <field name="home_ownership" type="row"/>
+                <field name="addr_state" type="row"/>
+                <field name="issue_d" interval="month"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_lc_loan_graph" model="ir.ui.view">
+        <field name="name">lc.loan.graph</field>
+        <field name="model">lc.loan</field>
+        <field name="arch" type="xml">
+            <graph string="Biểu đồ khoản vay" type="bar">
+                <field name="issue_d" type="row" interval="month"/>
+                <field name="loan_amnt" type="measure"/>
+                <field name="score" type="measure"/>
+            </graph>
+        </field>
+    </record>
+</odoo>
+

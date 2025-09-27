@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Define the category first -->
+    <record id="module_category_p2p_lending" model="ir.module.category">
+        <field name="name">P2P Lending</field>
+        <field name="sequence">100</field>
+    </record>
+
+    <!-- Define the group -->
+    <record id="group_p2p_manager" model="res.groups">
+        <field name="name">P2P Manager</field>
+        <field name="category_id" ref="module_category_p2p_lending"/>
+    </record>
+</odoo>

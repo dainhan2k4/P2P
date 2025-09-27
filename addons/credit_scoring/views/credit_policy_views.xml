@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Credit Policy Tree View -->
+    <record id="view_credit_policy_tree" model="ir.ui.view">
+        <field name="name">credit.policy.tree</field>
+        <field name="model">credit.policy</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Credit Policies" decoration-success="decision == 'approve'" decoration-warning="decision == 'review'" decoration-danger="decision == 'reject'">
+                <field name="name"/>
+                <field name="model_id"/>
+                <field name="min_score"/>
+                <field name="max_pd"/>
+                <field name="decision"/>
+                <field name="interest_rate_adjustment"/>
+                <field name="max_loan_amount"/>
+                <field name="max_loan_term"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Credit Policy Form View -->
+    <record id="view_credit_policy_form" model="ir.ui.view">
+        <field name="name">credit.policy.form</field>
+        <field name="model">credit.policy</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Credit Policy">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options="{'terminology': 'archive'}"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Policy Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="model_id"/>
+                            <field name="min_score"/>
+                            <field name="max_pd"/>
+                            <field name="decision"/>
+                        </group>
+                        <group>
+                            <field name="interest_rate_adjustment"/>
+                            <field name="max_loan_amount"/>
+                            <field name="max_loan_term"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notes">
+                            <field name="notes" placeholder="Additional notes about this policy..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Credit Policy Search View -->
+    <record id="view_credit_policy_search" model="ir.ui.view">
+        <field name="name">credit.policy.search</field>
+        <field name="model">credit.policy</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search string="Search Credit Policies">
+                <field name="name"/>
+                <field name="model_id"/>
+                <field name="min_score"/>
+                <filter string="Approve" name="approve" domain="[('decision', '=', 'approve')]"/>
+                <filter string="Review" name="review" domain="[('decision', '=', 'review')]"/>
+                <filter string="Reject" name="reject" domain="[('decision', '=', 'reject')]"/>
+                <filter string="Active" name="active" domain="[('active', '=', True)]"/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Model" name="group_by_model" context="{'group_by': 'model_id'}"/>
+                    <filter string="Decision" name="group_by_decision" context="{'group_by': 'decision'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Credit Policy Action -->
+    <record id="action_credit_policy" model="ir.actions.act_window">
+        <field name="name">Credit Policies</field>
+        <field name="res_model">credit.policy</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_credit_policy_search"/>
+        <field name="context">{"search_default_active": 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first credit policy
+            </p>
+            <p>
+                Define credit policies based on score ranges and probability of default.
+            </p>
+        </field>
+    </record>
+</odoo>

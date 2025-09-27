@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Minimal Tree View -->
+    <record id="v2_view_credit_model_tree" model="ir.ui.view">
+        <field name="name">v2.view.credit.model.tree</field>
+        <field name="model">credit.model</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Minimal Form View -->
+    <record id="v2_view_credit_model_form" model="ir.ui.view">
+        <field name="name">v2.view.credit.model.form</field>
+        <field name="model">credit.model</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

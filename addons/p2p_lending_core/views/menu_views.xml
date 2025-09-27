@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Main Menu -->
+        <menuitem id="menu_p2p_main"
+                  name="P2P Lending"
+                  sequence="10"
+                  groups="base.group_user"
+                  action="action_loan_type"
+                  web_icon="p2p_lending_core,static/description/icon.png"/>
+
+        <!-- Configuration Menu -->
+        <menuitem id="menu_p2p_config"
+                  name="Configuration"
+                  parent="menu_p2p_main"
+                  sequence="10"/>
+
+        <menuitem id="menu_loan_types"
+                  name="Loan Types"
+                  parent="menu_p2p_config"
+                  action="action_loan_type"
+                  sequence="10"/>
+
+        <menuitem id="menu_loan_config"
+                  name="System Configuration"
+                  parent="menu_p2p_config"
+                  action="action_loan_config"
+                  sequence="20"/>
+
+        <!-- Disbursement Menu -->
+        <menuitem id="menu_p2p_disbursement"
+                  name="Disbursement"
+                  parent="menu_p2p_main"
+                  sequence="20"/>
+
+        <menuitem id="menu_loan_applications"
+                  name="Loan Applications"
+                  parent="menu_p2p_disbursement"
+                  action="action_loan_application"
+                  sequence="10"/>
+
+        <menuitem id="menu_loan_disbursements"
+                  name="Disbursements"
+                  parent="menu_p2p_disbursement"
+                  action="action_loan_disbursement"
+                  sequence="20"/>
+
+        <!-- Bridge Menu -->
+        <menuitem id="menu_p2p_bridge"
+                  name="Bridge"
+                  parent="menu_p2p_main"
+                  sequence="30"/>
+
+        <menuitem id="menu_p2p_wallets"
+                  name="Wallets"
+                  parent="menu_p2p_bridge"
+                  action="action_p2p_wallet"
+                  sequence="10"/>
+
+        <menuitem id="menu_p2p_borrowers"
+                  name="Borrowers"
+                  parent="menu_p2p_bridge"
+                  action="action_p2p_borrower"
+                  sequence="20"/>
+
+        <menuitem id="menu_p2p_investors"
+                  name="Investors"
+                  parent="menu_p2p_bridge"
+                  action="action_p2p_investor"
+                  sequence="30"/>
+
+               <menuitem id="menu_p2p_sync"
+                         name="Sync Data"
+                         parent="menu_p2p_bridge"
+                         action="action_sync_wizard"
+                         sequence="40"/>
+
+               <!-- P2P Data Menu -->
+               <menuitem id="menu_p2p_data"
+                         name="P2P Data"
+                         parent="menu_p2p_main"
+                         sequence="35"/>
+
+               <menuitem id="menu_p2p_loans"
+                         name="Loans"
+                         parent="menu_p2p_data"
+                         action="action_p2p_loan"
+                         sequence="10"/>
+
+               <menuitem id="menu_p2p_investments"
+                         name="Investments"
+                         parent="menu_p2p_data"
+                         action="action_p2p_investment"
+                         sequence="20"/>
+
+               <!-- Reports Menu -->
+               <menuitem id="menu_p2p_reports"
+                         name="Reports"
+                         parent="menu_p2p_main"
+                         sequence="40"/>
+    </data>
+</odoo>

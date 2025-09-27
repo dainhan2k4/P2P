@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- P2P Wallet Views -->
+        <record id="view_p2p_wallet_tree" model="ir.ui.view">
+            <field name="name">p2p.wallet.tree</field>
+            <field name="model">p2p.wallet</field>
+            <field name="arch" type="xml">
+                <list string="Ví P2P">
+                    <field name="user_id"/>
+                    <field name="balance"/>
+                    <field name="currency"/>
+                    <field name="blockchain_address"/>
+                    <field name="blockchain_network"/>
+                    <field name="sync_status"/>
+                    <field name="last_sync"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_p2p_wallet_form" model="ir.ui.view">
+            <field name="name">p2p.wallet.form</field>
+            <field name="model">p2p.wallet</field>
+            <field name="arch" type="xml">
+                <form string="Ví P2P">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="user_id"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="balance"/>
+                                <field name="currency"/>
+                                <field name="blockchain_address"/>
+                                <field name="blockchain_network"/>
+                            </group>
+                            <group>
+                                <field name="sync_status"/>
+                                <field name="last_sync"/>
+                                <field name="transaction_count"/>
+                                <field name="total_deposits"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="total_withdrawals"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- P2P Borrower Views -->
+        <record id="view_p2p_borrower_tree" model="ir.ui.view">
+            <field name="name">p2p.borrower.tree</field>
+            <field name="model">p2p.borrower</field>
+            <field name="arch" type="xml">
+                <list string="Người vay">
+                    <field name="name"/>
+                    <field name="phone"/>
+                    <field name="email"/>
+                    <field name="monthly_income"/>
+                    <field name="credit_score"/>
+                    <field name="total_loans"/>
+                    <field name="active_loans"/>
+                    <field name="status"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_p2p_borrower_form" model="ir.ui.view">
+            <field name="name">p2p.borrower.form</field>
+            <field name="model">p2p.borrower</field>
+            <field name="arch" type="xml">
+                <form string="Người vay">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="user_id"/>
+                                <field name="phone"/>
+                                <field name="email"/>
+                                <field name="identity_card"/>
+                            </group>
+                            <group>
+                                <field name="address"/>
+                                <field name="date_of_birth"/>
+                                <field name="employment_status"/>
+                                <field name="status"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Thông tin tài chính">
+                                <field name="monthly_income"/>
+                                <field name="credit_score"/>
+                            </group>
+                            <group string="Thống kê khoản vay">
+                                <field name="total_loans"/>
+                                <field name="active_loans"/>
+                                <field name="total_borrowed"/>
+                                <field name="total_repaid"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Đồng bộ">
+                                <field name="sync_status"/>
+                                <field name="last_sync"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- P2P Investor Views -->
+        <record id="view_p2p_investor_tree" model="ir.ui.view">
+            <field name="name">p2p.investor.tree</field>
+            <field name="model">p2p.investor</field>
+            <field name="arch" type="xml">
+                <list string="Nhà đầu tư">
+                    <field name="name"/>
+                    <field name="phone"/>
+                    <field name="email"/>
+                    <field name="monthly_income"/>
+                    <field name="investment_capacity"/>
+                    <field name="risk_tolerance"/>
+                    <field name="total_investments"/>
+                    <field name="active_investments"/>
+                    <field name="status"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_p2p_investor_form" model="ir.ui.view">
+            <field name="name">p2p.investor.form</field>
+            <field name="model">p2p.investor</field>
+            <field name="arch" type="xml">
+                <form string="Nhà đầu tư">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="user_id"/>
+                                <field name="phone"/>
+                                <field name="email"/>
+                                <field name="identity_card"/>
+                            </group>
+                            <group>
+                                <field name="address"/>
+                                <field name="date_of_birth"/>
+                                <field name="risk_tolerance"/>
+                                <field name="status"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Thông tin tài chính">
+                                <field name="monthly_income"/>
+                                <field name="investment_capacity"/>
+                            </group>
+                            <group string="Thống kê đầu tư">
+                                <field name="total_investments"/>
+                                <field name="active_investments"/>
+                                <field name="total_invested"/>
+                                <field name="total_returns"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Đồng bộ">
+                                <field name="sync_status"/>
+                                <field name="last_sync"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Actions -->
+        <record id="action_p2p_wallet" model="ir.actions.act_window">
+            <field name="name">Ví P2P</field>
+            <field name="res_model">p2p.wallet</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="view_p2p_wallet_tree"/>
+        </record>
+
+        <record id="action_p2p_borrower" model="ir.actions.act_window">
+            <field name="name">Người vay</field>
+            <field name="res_model">p2p.borrower</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="view_p2p_borrower_tree"/>
+        </record>
+
+        <record id="action_p2p_investor" model="ir.actions.act_window">
+            <field name="name">Nhà đầu tư</field>
+            <field name="res_model">p2p.investor</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="view_p2p_investor_tree"/>
+        </record>
+    </data>
+</odoo>

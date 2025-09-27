@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_p2p_borrower_user,p2p.borrower.user,model_p2p_borrower,base.group_user,1,1,1,0
+access_p2p_borrower_manager,p2p.borrower.manager,model_p2p_borrower,p2p_lending.group_p2p_manager,1,1,1,1
+access_p2p_loan_user,p2p.loan.user,model_p2p_loan,base.group_user,1,1,1,0
+access_p2p_loan_manager,p2p.loan.manager,model_p2p_loan,p2p_lending.group_p2p_manager,1,1,1,1
+access_p2p_investor_user,p2p.investor.user,model_p2p_investor,base.group_user,1,1,1,0
+access_p2p_investor_manager,p2p.investor.manager,model_p2p_investor,p2p_lending.group_p2p_manager,1,1,1,1
+access_p2p_investment_user,p2p.investment.user,model_p2p_investment,base.group_user,1,1,1,0
+access_p2p_investment_manager,p2p.investment.manager,model_p2p_investment,p2p_lending.group_p2p_manager,1,1,1,1
+access_p2p_loan_payment_user,p2p.loan.payment.user,model_p2p_loan_payment,base.group_user,1,1,1,0
+access_p2p_loan_payment_manager,p2p.loan.payment.manager,model_p2p_loan_payment,p2p_lending.group_p2p_manager,1,1,1,1
+access_p2p_investment_payment_user,p2p.investment.payment.user,model_p2p_investment_payment,base.group_user,1,1,1,0
+access_p2p_investment_payment_manager,p2p.investment.payment.manager,model_p2p_investment_payment,p2p_lending.group_p2p_manager,1,1,1,1

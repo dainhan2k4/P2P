@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- List View -->
+    <record id="view_p2p_investor_list" model="ir.ui.view">
+        <field name="name">p2p.investor.list</field>
+        <field name="model">p2p.investor</field>
+        <field name="arch" type="xml">
+            <list string="Danh sách nhà đầu tư">
+                <field name="name"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="total_invested" sum="Tổng cộng"/>
+                <field name="active" invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_p2p_investor_form" model="ir.ui.view">
+        <field name="name">p2p.investor.form</field>
+        <field name="model">p2p.investor</field>
+        <field name="arch" type="xml">
+            <form string="Thông tin nhà đầu tư">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_investments" 
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-money"
+                                string="Đầu tư">
+                            <field name="investment_count" widget="statinfo" string="Đầu tư"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Tên nhà đầu tư"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id" options="{'no_create': True}"/>
+                            <field name="id_number"/>
+                            <field name="date_of_birth"/>
+                        </group>
+                        <group>
+                            <field name="phone"/>
+                            <field name="email"/>
+                            <field name="total_invested"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Đầu tư">
+                            <field name="investment_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="loan_id"/>
+                                    <field name="amount"/>
+                                    <field name="date"/>
+                                    <field name="state" widget="badge"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_p2p_investor_search" model="ir.ui.view">
+        <field name="name">p2p.investor.search</field>
+        <field name="model">p2p.investor</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm nhà đầu tư">
+                <field name="name" string="Tên"/>
+                <field name="id_number" string="Số CMND/CCCD"/>
+                <separator/>
+                <filter string="Đang hoạt động" name="active" domain="[('active', '=', True)]"/>
+                <filter string="Không hoạt động" name="inactive" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="p2p_lending.action_p2p_investor" model="ir.actions.act_window">
+        <field name="name">Nhà đầu tư</field>
+        <field name="res_model">p2p.investor</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo nhà đầu tư mới
+            </p>
+        </field>
+    </record>
+</odoo>

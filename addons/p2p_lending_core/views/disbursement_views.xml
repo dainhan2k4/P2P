@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Loan Application Views -->
+        <record id="view_loan_application_tree" model="ir.ui.view">
+            <field name="name">loan.application.tree</field>
+            <field name="model">loan.application</field>
+            <field name="arch" type="xml">
+                <list string="Hồ sơ vay">
+                    <field name="name"/>
+                    <field name="borrower_id"/>
+                    <field name="amount"/>
+                    <field name="interest_rate"/>
+                    <field name="term_months"/>
+                    <field name="status"/>
+                    <field name="application_date"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_loan_application_form" model="ir.ui.view">
+            <field name="name">loan.application.form</field>
+            <field name="model">loan.application</field>
+            <field name="arch" type="xml">
+                <form string="Hồ sơ vay">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="borrower_id"/>
+                                <field name="loan_type_id"/>
+                                <field name="amount"/>
+                                <field name="interest_rate"/>
+                            </group>
+                            <group>
+                                <field name="term_months"/>
+                                <field name="application_date"/>
+                                <field name="due_date"/>
+                                <field name="status"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="purpose"/>
+                        </group>
+                        <group>
+                            <field name="collateral_info"/>
+                        </group>
+                        <group>
+                            <group string="Thông tin tài chính">
+                                <field name="monthly_income"/>
+                                <field name="monthly_expenses"/>
+                                <field name="credit_score"/>
+                            </group>
+                            <group string="Tính toán">
+                                <field name="service_fee"/>
+                                <field name="total_amount"/>
+                                <field name="monthly_payment"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Loan Disbursement Views -->
+        <record id="view_loan_disbursement_tree" model="ir.ui.view">
+            <field name="name">loan.disbursement.tree</field>
+            <field name="model">loan.disbursement</field>
+            <field name="arch" type="xml">
+                <list string="Giải ngân">
+                    <field name="name"/>
+                    <field name="borrower_id"/>
+                    <field name="amount"/>
+                    <field name="disbursement_date"/>
+                    <field name="status"/>
+                    <field name="disbursement_method"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_loan_disbursement_form" model="ir.ui.view">
+            <field name="name">loan.disbursement.form</field>
+            <field name="model">loan.disbursement</field>
+            <field name="arch" type="xml">
+                <form string="Giải ngân">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="loan_application_id"/>
+                                <field name="borrower_id"/>
+                                <field name="amount"/>
+                                <field name="currency_id"/>
+                            </group>
+                            <group>
+                                <field name="disbursement_date"/>
+                                <field name="due_date"/>
+                                <field name="status"/>
+                                <field name="disbursement_method"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Phê duyệt">
+                                <field name="approval_user_id"/>
+                                <field name="approval_date"/>
+                            </group>
+                            <group string="Blockchain">
+                                <field name="blockchain_transaction_id"/>
+                                <field name="blockchain_status"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Ngân hàng">
+                                <field name="bank_account_id"/>
+                                <field name="bank_reference"/>
+                            </group>
+                            <group string="Phí và lãi">
+                                <field name="interest_rate"/>
+                                <field name="service_fee"/>
+                                <field name="total_amount"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="notes"/>
+                        </group>
+                        <group>
+                            <field name="rejection_reason"/>
+                        </group>
+                        <group>
+                            <group string="Đồng bộ">
+                                <field name="sync_status"/>
+                                <field name="sync_date"/>
+                            </group>
+                            <group>
+                                <field name="sync_error"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Actions -->
+        <record id="action_loan_application" model="ir.actions.act_window">
+            <field name="name">Hồ sơ vay</field>
+            <field name="res_model">loan.application</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="view_loan_application_tree"/>
+        </record>
+
+        <record id="action_loan_disbursement" model="ir.actions.act_window">
+            <field name="name">Giải ngân</field>
+            <field name="res_model">loan.disbursement</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="view_loan_disbursement_tree"/>
+        </record>
+    </data>
+</odoo>
